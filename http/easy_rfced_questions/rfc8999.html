@@ -10,7 +10,7 @@
        This document defines the properties of the QUIC transport protocol that are
 common to all versions of the protocol. 
     " name="description">
-<meta content="xml2rfc 3.11.1" name="generator">
+<meta content="xml2rfc 3.12.1" name="generator">
 <meta content="crypto" name="keyword">
 <meta content="next generation" name="keyword">
 <meta content="protocol" name="keyword">
@@ -19,7 +19,7 @@ common to all versions of the protocol.
 <meta content="UDP" name="keyword">
 <meta content="8999" name="rfc.number">
 <!-- Generator version information:
-  xml2rfc 3.11.1
+  xml2rfc 3.12.1
     Python 3.9.7
     appdirs 1.4.4
     ConfigArgParse 1.3
@@ -28,7 +28,7 @@ common to all versions of the protocol.
     intervaltree 3.1.0
     Jinja2 2.11.3
     kitchen 1.2.6
-    lxml 4.6.4
+    lxml 4.6.5
     pycountry 20.7.3
     pyflakes 2.3.1
     PyYAML 5.4.1
@@ -638,36 +638,8 @@ hr {
 }
 
 /* index */
-.index ul {
-  margin: 0 0 0 1em;
-  padding: 0;
-  list-style: none;
-}
-.index ul ul {
-  margin: 0;
-}
-.index li {
-  margin: 0;
-  text-indent: -2em;
-  padding-left: 2em;
-  padding-bottom: 5px;
-}
-.indexIndex {
-  margin: 0.5em 0 1em;
-}
-.index a {
-  font-weight: 700;
-}
-/* make the index two-column on all but the smallest screens */
-@media (min-width: 500px) {
-  .index ul {
-    column-count: 2;
-    column-gap: 20px;
-  }
-  .index ul ul {
-    column-count: 1;
-    column-gap: 0;
-  }
+#rfc\.index\.index + ul {
+  margin-left: 0;
 }
 
 /* authors */

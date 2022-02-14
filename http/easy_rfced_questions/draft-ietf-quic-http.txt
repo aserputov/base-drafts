@@ -4,11 +4,11 @@
 
 QUIC                                                      M. Bishop, Ed.
 Internet-Draft                                                    Akamai
-Intended status: Standards Track                        15 November 2021
-Expires: 19 May 2022
+Intended status: Standards Track                        14 February 2022
+Expires: 18 August 2022
 
 
-             Hypertext Transfer Protocol Version 3 (HTTP/3)
+                                 HTTP/3
                           draft-ietf-quic-http
 
 Abstract
@@ -35,11 +35,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 May 2022.
+   This Internet-Draft will expire on 18 August 2022.
 
 Copyright Notice
 
-   Copyright (c) 2021 IETF Trust and the persons identified as the
+   Copyright (c) 2022 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -674,8 +674,8 @@ Table of Contents
       with a value of '*'; see Section 7.1 of [SEMANTICS].
 
    All HTTP/3 requests MUST include exactly one value for the ":method",
-   ":scheme", and ":path" pseudo-header fields, unless it is a CONNECT
-   request; see Section 4.2.
+   ":scheme", and ":path" pseudo-header fields, unless the request is a
+   CONNECT request; see Section 4.2.
 
    If the ":scheme" pseudo-header field identifies a scheme that has a
    mandatory authority component (including "http" and "https"), the
@@ -751,9 +751,10 @@ Table of Contents
    canceling a request it has already begun processing.
 
    Implementations SHOULD cancel requests by abruptly terminating any
-   directions of a stream that are still open.  This means resetting the
-   sending parts of streams and aborting reading on receiving parts of
-   streams; see Section 2.4 of [QUIC-TRANSPORT].
+   directions of a stream that are still open.  To do so, an
+   implementation resets the sending parts of streams and aborts reading
+   on the receiving parts of streams; see Section 2.4 of
+   [QUIC-TRANSPORT].
 
    When the server cancels a request without performing any application
    processing, the request is considered "rejected."  The server SHOULD
@@ -885,17 +886,10 @@ Table of Contents
    A TCP connection error is signaled by abruptly terminating the
    stream.  A proxy treats any error in the TCP connection, which
    includes receiving a TCP segment with the RST bit set, as a stream
-   error of type H3_CONNECT_ERROR; see Section 8.
-
-   Correspondingly, if a proxy detects an error with the stream or the
-   QUIC connection, it MUST close the TCP connection.  If the proxy
-   detects that the client has reset the stream or aborted reading from
-   the stream, it MUST close the TCP connection.  If the stream is reset
-   or reading is aborted by the client, a proxy SHOULD perform the same
-   operation on the other direction in order to ensure that both
-   directions of the stream are cancelled.  In all these cases, if the
-   underlying TCP implementation permits it, the proxy SHOULD send a TCP
-   segment with the RST bit set.
+   error of type H3_CONNECT_ERROR; see Section 8.  Correspondingly, if a
+   proxy detects an error with the stream or the QUIC connection, it
+   MUST close the TCP connection.  If the underlying TCP implementation
+   permits it, the proxy SHOULD send a TCP segment with the RST bit set.
 
    Since CONNECT creates a tunnel to an arbitrary server, proxies that
    support CONNECT SHOULD restrict its use to a set of known ports or a
@@ -1178,9 +1172,10 @@ Table of Contents
    stream, HTTP/3 does not make use of this feature.
 
    QUIC streams can be either unidirectional, carrying data only from
-   initiator to receiver, or bidirectional.  Streams can be initiated by
-   either the client or the server.  For more detail on QUIC streams,
-   see Section 2 of [QUIC-TRANSPORT].
+   initiator to receiver, or bidirectional, carrying data in both
+   directions.  Streams can be initiated by either the client or the
+   server.  For more detail on QUIC streams, see Section 2 of
+   [QUIC-TRANSPORT].
 
    When HTTP fields and data are sent over QUIC, the QUIC layer handles
    most of the stream management.  HTTP does not need to do any separate
@@ -1237,13 +1232,16 @@ Table of Contents
    becomes blocked.  In particular, implementations should consider that
    remote peers may wish to exercise reserved stream behavior
    (Section 6.2.3) with some of the unidirectional streams they are
-   permitted to use.  To avoid blocking, the transport parameters sent
-   by both clients and servers MUST allow the peer to create at least
-   one unidirectional stream for the HTTP control stream plus the number
-   of unidirectional streams required by mandatory extensions (three
-   being the minimum number required for the base HTTP/3 protocol and
-   QPACK), and SHOULD provide at least 1,024 bytes of flow control
-   credit to each stream.
+   permitted to use.
+
+   Each endpoint needs to create at least one unidirectional stream for
+   the HTTP control stream.  QPACK requires two additional
+   unidirectional streams, and other extensions might require further
+   streams.  Therefore, the transport parameters sent by both clients
+   and servers MUST allow the peer to create at least three
+   unidirectional streams.  These transport parameters SHOULD also
+   provide at least 1,024 bytes of flow control credit to each
+   unidirectional stream.
 
    Note that an endpoint is not required to grant additional credits to
    create more unidirectional streams if its peer consumes all the
@@ -1255,10 +1253,12 @@ Table of Contents
 
    If the stream header indicates a stream type that is not supported by
    the recipient, the remainder of the stream cannot be consumed as the
-   semantics are unknown.  Recipients of unknown stream types MAY abort
-   reading of the stream with an error code of H3_STREAM_CREATION_ERROR
-   or a reserved error code (Section 8.1), but MUST NOT consider such
-   streams to be a connection error of any kind.
+   semantics are unknown.  Recipients of unknown stream types MUST
+   either abort reading of the stream or discard incoming data without
+   further processing.  If reading is aborted, the recipient SHOULD use
+   the H3_STREAM_CREATION_ERROR error code or a reserved error code
+   (Section 8.1).  The recipient MUST NOT consider unknown stream types
+   to be a connection error of any kind.
 
    Implementations MAY send stream types before knowing whether the peer
    supports them.  However, stream types that could modify the state or
@@ -1932,8 +1932,8 @@ Table of Contents
    (Section 11.2.3), and stream types (Section 11.2.4).
 
    Implementations MUST ignore unknown or unsupported values in all
-   extensible protocol elements.  Implementations MUST discard frames
-   and abort reading on unidirectional streams that have unknown or
+   extensible protocol elements.  Implementations MUST discard data or
+   abort reading on unidirectional streams that have unknown or
    unsupported types.  This means that any of these extension points can
    be safely used by extensions without prior arrangement or
    negotiation.  However, where a known frame type is required to be in
@@ -2354,6 +2354,9 @@ Table of Contents
 
                      Table 3: Initial HTTP/3 Settings
 
+   For fomatting reasons, setting names can be abbreviated by removing
+   the 'SETTING_' prefix.
+
    Each code of the format 0x1f * N + 0x21 for non-negative integer
    values of N (that is, 0x21, 0x40, ..., through 0x3ffffffffffffffe)
    MUST NOT be assigned by IANA and MUST NOT appear in the listing of
@@ -2531,14 +2534,14 @@ Table of Contents
 
    [QPACK]    Krasic, C., Bishop, M., and A. Frindell, Ed., "QPACK:
               Header Compression for HTTP over QUIC", Work in Progress,
-              Internet-Draft, draft-ietf-quic-qpack, 15 November 2021,
+              Internet-Draft, draft-ietf-quic-qpack, 14 February 2022,
               <https://datatracker.ietf.org/doc/html/draft-ietf-quic-
               qpack>.
 
    [QUIC-TRANSPORT]
               Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", RFC 9000,
-              DOI 10.17487/RFC9000, 15 November 2021,
+              DOI 10.17487/RFC9000, 14 February 2022,
               <https://www.rfc-editor.org/rfc/rfc9000>.
 
    [RFC0793]  Postel, J., "Transmission Control Protocol", STD 7,
@@ -2952,8 +2955,8 @@ A.4.1.  Mapping Between HTTP/2 and HTTP/3 Errors
 
 Acknowledgments
 
-   The original authors of this specification were Robbie Shade and Mike
-   Warres.
+   Robbie Shade and Mike Warres were the authors of draft-shade-quic-
+   http2-mapping, which was the basis for this document.
 
    The IETF QUIC Working Group received an enormous amount of support
    from many people.  Among others, the following people provided

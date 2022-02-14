@@ -8169,9 +8169,9 @@ Table of Contents
    [QUIC-MANAGEABILITY]
               Kuehlewind, M. and B. Trammell, "Manageability of the QUIC
               Transport Protocol", Work in Progress, Internet-Draft,
-              draft-ietf-quic-manageability-13, 2 September 2021,
+              draft-ietf-quic-manageability-14, 21 January 2022,
               <https://datatracker.ietf.org/doc/html/draft-ietf-quic-
-              manageability-13>.
+              manageability-14>.
 
    [RANDOM]   Eastlake 3rd, D., Schiller, J., and S. Crocker,
               "Randomness Requirements for Security", BCP 106, RFC 4086,
