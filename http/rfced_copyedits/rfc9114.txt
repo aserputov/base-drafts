@@ -352,7 +352,7 @@ Table of Contents
    validation of the server certificate as described above), and sending
    an HTTP/3 request message targeting the URI to the server over that
    secured connection.  Unless some other mechanism is used to select
-   HTTP/3, the token "h3" is used in the Application Layer Protocol
+   HTTP/3, the token "h3" is used in the Application-Layer Protocol
    Negotiation (ALPN; see [RFC7301]) extension during the TLS handshake.
 
    Connectivity problems (e.g., blocking UDP) can result in a failure to
