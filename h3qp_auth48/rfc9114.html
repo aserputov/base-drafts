@@ -2519,10 +2519,11 @@ extensions (such as the QPACK encoder and decoder streams) first, and then
 create additional streams as allowed by their peer.<a href="#section-6.2-6" class="pilcrow">¶</a></p>
 <p id="section-6.2-7">If the stream header indicates a stream type that is not supported by the
 recipient, the remainder of the stream cannot be consumed as the semantics are
-unknown. Recipients of unknown stream types <span class="bcp14">MAY</span> abort reading of the stream with
-an error code of H3_STREAM_CREATION_ERROR or a reserved error code
-(<a href="#http-error-codes" class="xref">Section 8.1</a>), but the recipients <span class="bcp14">MUST NOT</span> consider such streams to be
-a connection error of any kind.<a href="#section-6.2-7" class="pilcrow">¶</a></p>
+unknown. Recipients of unknown stream types <span class="bcp14">MUST</span> either abort reading of the
+stream or discard incoming data without further processing.  If reading is
+aborted, the recipient <span class="bcp14">SHOULD</span> use the H3_STREAM_CREATION_ERROR error code or a
+reserved error code (<a href="#http-error-codes" class="xref">Section 8.1</a>). The recipient <span class="bcp14">MUST NOT</span> consider
+unknown stream types to be a connection error of any kind.<a href="#section-6.2-7" class="pilcrow">¶</a></p>
 <p id="section-6.2-8">As certain stream types can affect connection state, a recipient <span class="bcp14">SHOULD NOT</span>
 discard data from incoming unidirectional streams prior to reading the stream
 type.<a href="#section-6.2-8" class="pilcrow">¶</a></p>
@@ -3363,7 +3364,7 @@ managing these extension points: frame types (<a href="#iana-frames" class="xref
 (<a href="#iana-settings" class="xref">Section 11.2.2</a>), error codes (<a href="#iana-error-codes" class="xref">Section 11.2.3</a>), and stream types
 (<a href="#iana-stream-types" class="xref">Section 11.2.4</a>).<a href="#section-9-3" class="pilcrow">¶</a></p>
 <p id="section-9-4">Implementations <span class="bcp14">MUST</span> ignore unknown or unsupported values in all extensible
-protocol elements.  Implementations <span class="bcp14">MUST</span> discard frames and abort reading on
+protocol elements.  Implementations <span class="bcp14">MUST</span> discard data or abort reading on
 unidirectional streams that have unknown or unsupported types.  This means that
 any of these extension points can be safely used by extensions without prior
 arrangement or negotiation.  However, where a known frame type is required to be

@@ -368,9 +368,7 @@ Table of Contents
               DOI 10.17487/RFC9000, May 2021,
               <https://www.rfc-editor.org/rfc/rfc9000>.
 
-   [RFC5116]  McGrew, D., "An Interface and Algorithms for Authenticated
-              Encryption", RFC 5116, DOI 10.17487/RFC5116, January 2008,
-              <https://www.rfc-editor.org/rfc/rfc5116>.
+   [RFC5116]  "*** BROKEN REFERENCE ***".
 
 Appendix A.  Incorrect Assumptions
 
