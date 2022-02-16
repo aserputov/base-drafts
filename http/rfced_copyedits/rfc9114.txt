@@ -1047,9 +1047,9 @@ Table of Contents
    The information in the GOAWAY frame enables a client and server to
    agree on which requests or pushes were accepted prior to the shutdown
    of the HTTP/3 connection.  Upon sending a GOAWAY frame, the endpoint
-   SHOULD explicitly cancel (see Section 4.1.2 and Section 7.2.3) any
-   requests or pushes that have identifiers greater than or equal to the
-   one indicated, in order to clean up transport state for the affected
+   SHOULD explicitly cancel (see Sections 4.1.2 and 7.2.3) any requests
+   or pushes that have identifiers greater than or equal to the one
+   indicated, in order to clean up transport state for the affected
    streams.  The endpoint SHOULD continue to do so as more requests or
    pushes arrive.
 
@@ -2128,12 +2128,12 @@ Table of Contents
    Where HTTP/2 employs PADDING frames and Padding fields in other
    frames to make a connection more resistant to traffic analysis,
    HTTP/3 can either rely on transport-layer padding or employ the
-   reserved frame and stream types discussed in Section 7.2.8 and
-   Section 6.2.3.  These methods of padding produce different results in
-   terms of the granularity of padding, how padding is arranged in
-   relation to the information that is being protected, whether padding
-   is applied in the case of packet loss, and how an implementation
-   might control padding.
+   reserved frame and stream types discussed in Sections 7.2.8 and
+   6.2.3.  These methods of padding produce different results in terms
+   of the granularity of padding, how padding is arranged in relation to
+   the information that is being protected, whether padding is applied
+   in the case of packet loss, and how an implementation might control
+   padding.
 
    Reserved stream types can be used to give the appearance of sending
    traffic even when the connection is idle.  Because HTTP traffic often

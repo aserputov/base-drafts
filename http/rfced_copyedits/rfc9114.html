@@ -2319,10 +2319,10 @@ processed.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.2-2">The information in the GOAWAY frame enables a client and server to agree on
 which requests or pushes were accepted prior to the shutdown of the HTTP/3
 connection. Upon sending a GOAWAY frame, the endpoint <span class="bcp14">SHOULD</span> explicitly cancel
-(see <a href="#request-cancellation" class="xref">Section 4.1.2</a> and <a href="#frame-cancel-push" class="xref">Section 7.2.3</a>) any requests or pushes
-that have identifiers greater than or equal to the one indicated, in order to
-clean up transport state for the affected streams. The endpoint <span class="bcp14">SHOULD</span> continue
-to do so as more requests or pushes arrive.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
+(see Sections <a href="#request-cancellation" class="xref">4.1.2</a> and <a href="#frame-cancel-push" class="xref">7.2.3</a>) any requests
+or pushes that have identifiers greater than or equal to the one indicated, in
+order to clean up transport state for the affected streams. The endpoint <span class="bcp14">SHOULD</span>
+continue to do so as more requests or pushes arrive.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
 <p id="section-5.2-3">Endpoints <span class="bcp14">MUST NOT</span> initiate new requests or promise new pushes on the connection
 after receipt of a GOAWAY frame from the peer.  Clients <span class="bcp14">MAY</span> establish a new
 connection to send additional requests.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
@@ -3547,11 +3547,11 @@ content includes both attacker-controlled plaintext and secret data (e.g.,
 <p id="section-10.7-2">Where HTTP/2 employs PADDING frames and Padding fields in other frames to make a
 connection more resistant to traffic analysis, HTTP/3 can either rely on
 transport-layer padding or employ the reserved frame and stream types discussed
-in <a href="#frame-reserved" class="xref">Section 7.2.8</a> and <a href="#stream-grease" class="xref">Section 6.2.3</a>.  These methods of padding produce
-different results in terms of the granularity of padding, how padding is
-arranged in relation to the information that is being protected, whether padding
-is applied in the case of packet loss, and how an implementation might control
-padding.<a href="#section-10.7-2" class="pilcrow">¶</a></p>
+in Sections <a href="#frame-reserved" class="xref">7.2.8</a> and <a href="#stream-grease" class="xref">6.2.3</a>.  These methods of
+padding produce different results in terms of the granularity of padding, how
+padding is arranged in relation to the information that is being protected,
+whether padding is applied in the case of packet loss, and how an implementation
+might control padding.<a href="#section-10.7-2" class="pilcrow">¶</a></p>
 <p id="section-10.7-3">Reserved stream types can be used to give the appearance of sending traffic even
 when the connection is idle.  Because HTTP traffic often occurs in bursts,
 apparent traffic can be used to obscure the timing or duration of such bursts,
