@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>RFC 9114: Hypertext Transfer Protocol Version 3 (HTTP/3)</title>
+<title>RFC 9114: HTTP/3</title>
 <meta content="Mike Bishop" name="author">
 <meta content="
        The QUIC transport protocol has several features that are desirable in a
@@ -1052,7 +1052,7 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 </dl>
 </div>
 <h1 id="rfcnum">RFC 9114</h1>
-<h1 id="title">Hypertext Transfer Protocol Version 3 (HTTP/3)</h1>
+<h1 id="title">HTTP/3</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">The QUIC transport protocol has several features that are desirable in a
@@ -1969,7 +1969,7 @@ include a ":path" pseudo-header field with a value of '*'; see
             <dd class="break"></dd>
 </dl>
 <p id="section-4.1.1.1-7">All HTTP/3 requests <span class="bcp14">MUST</span> include exactly one value for the ":method", ":scheme",
-and ":path" pseudo-header fields, unless it is a CONNECT request; see
+and ":path" pseudo-header fields, unless the request is a CONNECT request; see
 <a href="#connect" class="xref">Section 4.2</a>.<a href="#section-4.1.1.1-7" class="pilcrow">¶</a></p>
 <p id="section-4.1.1.1-8">If the ":scheme" pseudo-header field identifies a scheme that has a mandatory
 authority component (including "http" and "https"), the request <span class="bcp14">MUST</span> contain
@@ -2044,10 +2044,10 @@ servers cancel requests if they are unable to or choose not to respond.  When
 possible, it is <span class="bcp14">RECOMMENDED</span> that servers send an HTTP response with an
 appropriate status code rather than cancelling a request it has already begun
 processing.<a href="#section-4.1.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.1.2-2">Implementations <span class="bcp14">SHOULD</span> cancel requests by abruptly terminating any
-directions of a stream that are still open.  This means resetting the
-sending parts of streams and aborting reading on receiving parts of streams;
-see <span><a href="https://rfc-editor.org/rfc/rfc9000#section-2.4" class="relref">Section 2.4</a> of [<a href="#QUIC-TRANSPORT" class="xref">QUIC-TRANSPORT</a>]</span>.<a href="#section-4.1.2-2" class="pilcrow">¶</a></p>
+<p id="section-4.1.2-2">Implementations <span class="bcp14">SHOULD</span> cancel requests by abruptly terminating any directions of
+a stream that are still open.  To do so, an implementation resets the sending
+parts of streams and aborts reading on the receiving parts of streams; see
+<span><a href="https://rfc-editor.org/rfc/rfc9000#section-2.4" class="relref">Section 2.4</a> of [<a href="#QUIC-TRANSPORT" class="xref">QUIC-TRANSPORT</a>]</span>.<a href="#section-4.1.2-2" class="pilcrow">¶</a></p>
 <p id="section-4.1.2-3">When the server cancels a request without performing any application processing,
 the request is considered "rejected".  The server <span class="bcp14">SHOULD</span> abort its response
 stream with the error code H3_REQUEST_REJECTED. In this context, "processed"
@@ -2435,9 +2435,9 @@ transport layer buffers and orders received stream data, exposing a reliable
 byte stream to the application. Although QUIC permits out-of-order delivery
 within a stream, HTTP/3 does not make use of this feature.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">QUIC streams can be either unidirectional, carrying data only from initiator to
-receiver, or bidirectional.  Streams can be initiated by either the client or
-the server.  For more detail on QUIC streams, see
-<span><a href="https://rfc-editor.org/rfc/rfc9000#section-2" class="relref">Section 2</a> of [<a href="#QUIC-TRANSPORT" class="xref">QUIC-TRANSPORT</a>]</span>.<a href="#section-6-2" class="pilcrow">¶</a></p>
+receiver, or bidirectional, carrying data in both directions.  Streams can be
+initiated by either the client or the server.  For more detail on QUIC streams,
+see <span><a href="https://rfc-editor.org/rfc/rfc9000#section-2" class="relref">Section 2</a> of [<a href="#QUIC-TRANSPORT" class="xref">QUIC-TRANSPORT</a>]</span>.<a href="#section-6-2" class="pilcrow">¶</a></p>
 <p id="section-6-3">When HTTP fields and data are sent over QUIC, the QUIC layer handles most of
 the stream management.  HTTP does not need to do any separate multiplexing when
 using QUIC: data sent over a QUIC stream always maps to a particular HTTP
@@ -2497,31 +2497,32 @@ window of these streams will increase the chance that the remote peer reaches
 the limit early and becomes blocked. In particular, implementations should
 consider that remote peers may wish to exercise reserved stream behavior
 (<a href="#stream-grease" class="xref">Section 6.2.3</a>) with some of the unidirectional streams they are permitted
-to use. To avoid blocking, the transport parameters sent by both clients and
-servers <span class="bcp14">MUST</span> allow the peer to create at least one unidirectional stream for the
-HTTP control stream plus the number of unidirectional streams required by
-mandatory extensions (three being the minimum number required for the base
-HTTP/3 protocol and QPACK), and <span class="bcp14">SHOULD</span> provide at least 1,024 bytes of
-flow-control credit to each stream.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
-<p id="section-6.2-5">Note that an endpoint is not required to grant additional credits to create more
+to use.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
+<p id="section-6.2-5">Each endpoint needs to create at least one unidirectional stream for the HTTP
+control stream. QPACK requires two additional unidirectional streams, and other
+extensions might require further streams. Therefore, the transport parameters
+sent by both clients and servers <span class="bcp14">MUST</span> allow the peer to create at least three
+unidirectional streams. These transport parameters <span class="bcp14">SHOULD</span> also provide at least
+1,024 bytes of flow-control credit to each unidirectional stream.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
+<p id="section-6.2-6">Note that an endpoint is not required to grant additional credits to create more
 unidirectional streams if its peer consumes all the initial credits before
 creating the critical unidirectional streams. Endpoints <span class="bcp14">SHOULD</span> create the HTTP
 control stream as well as the unidirectional streams required by mandatory
 extensions (such as the QPACK encoder and decoder streams) first, and then
-create additional streams as allowed by their peer.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
-<p id="section-6.2-6">If the stream header indicates a stream type that is not supported by the
+create additional streams as allowed by their peer.<a href="#section-6.2-6" class="pilcrow">¶</a></p>
+<p id="section-6.2-7">If the stream header indicates a stream type that is not supported by the
 recipient, the remainder of the stream cannot be consumed as the semantics are
 unknown. Recipients of unknown stream types <span class="bcp14">MAY</span> abort reading of the stream with
 an error code of H3_STREAM_CREATION_ERROR or a reserved error code
 (<a href="#http-error-codes" class="xref">Section 8.1</a>), but the recipients <span class="bcp14">MUST NOT</span> consider such streams to be
-a connection error of any kind.<a href="#section-6.2-6" class="pilcrow">¶</a></p>
-<p id="section-6.2-7">Implementations <span class="bcp14">MAY</span> send stream types before knowing whether the peer supports
+a connection error of any kind.<a href="#section-6.2-7" class="pilcrow">¶</a></p>
+<p id="section-6.2-8">Implementations <span class="bcp14">MAY</span> send stream types before knowing whether the peer supports
 them.  However, stream types that could modify the state or semantics of
 existing protocol components, including QPACK or other extensions, <span class="bcp14">MUST NOT</span> be
-sent until the peer is known to support them.<a href="#section-6.2-7" class="pilcrow">¶</a></p>
-<p id="section-6.2-8">A sender can close or reset a unidirectional stream unless otherwise specified.
+sent until the peer is known to support them.<a href="#section-6.2-8" class="pilcrow">¶</a></p>
+<p id="section-6.2-9">A sender can close or reset a unidirectional stream unless otherwise specified.
 A receiver <span class="bcp14">MUST</span> tolerate unidirectional streams being closed or reset prior to
-the reception of the unidirectional stream header.<a href="#section-6.2-8" class="pilcrow">¶</a></p>
+the reception of the unidirectional stream header.<a href="#section-6.2-9" class="pilcrow">¶</a></p>
 <div id="control-streams">
 <section id="section-6.2.1">
           <h4 id="name-control-streams">
@@ -3889,9 +3890,11 @@ most restrictive possible value.<a href="#section-11.2.2-4.4.1" class="pilcrow">
             </tbody>
           </table>
 </div>
-<p id="section-11.2.2-7">Each code of the format 0x1f * N + 0x21 for non-negative integer values of N
+<p id="section-11.2.2-7">For fomatting reasons, setting names can be abbreviated by removing the
+'SETTING_' prefix.<a href="#section-11.2.2-7" class="pilcrow">¶</a></p>
+<p id="section-11.2.2-8">Each code of the format 0x1f * N + 0x21 for non-negative integer values of N
 (that is, 0x21, 0x40, ..., through 0x3ffffffffffffffe) <span class="bcp14">MUST NOT</span> be assigned by
-IANA and <span class="bcp14">MUST NOT</span> appear in the listing of assigned values.<a href="#section-11.2.2-7" class="pilcrow">¶</a></p>
+IANA and <span class="bcp14">MUST NOT</span> appear in the listing of assigned values.<a href="#section-11.2.2-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-error-codes">
@@ -4682,7 +4685,8 @@ for what might be a temporary or intermittent error.<a href="#appendix-A.4.1-4" 
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-B-1">The original authors of this specification were Robbie Shade and Mike Warres.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-1">Robbie Shade and Mike Warres were the authors of draft-shade-quic-http2-mapping,
+a precursor of this document.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <p id="appendix-B-2">The IETF QUIC Working Group received an enormous amount of support from many
 people. Among others, the following people provided substantial contributions to
 this document:<a href="#appendix-B-2" class="pilcrow">¶</a></p>
