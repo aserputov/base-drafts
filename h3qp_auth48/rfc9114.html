@@ -1402,7 +1402,7 @@ subsumed by QUIC and describes how HTTP/2 extensions can be ported to HTTP/3.<a 
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">HTTP semantics (<span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>) are used for a broad
+<p id="section-1-1">HTTP semantics (<span>[<a href="#HTTP" class="xref">HTTP</a>]</span>) are used for a broad
 range of services on the Internet. These semantics have most commonly been used
 with HTTP/1.1 and HTTP/2.  HTTP/1.1 has been used over a variety of transport
 and session layers, while HTTP/2 has been used primarily with TLS over TCP.
@@ -1621,9 +1621,9 @@ but multiple stream types are defined within HTTP/3.<a href="#section-2.2-4.24.1
 </dd>
         <dd class="break"></dd>
 </dl>
-<p id="section-2.2-5">The term "content" is defined in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-6.4" class="relref">Section 6.4</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.<a href="#section-2.2-5" class="pilcrow">¶</a></p>
+<p id="section-2.2-5">The term "content" is defined in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-6.4" class="relref">Section 6.4</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>.<a href="#section-2.2-5" class="pilcrow">¶</a></p>
 <p id="section-2.2-6">Finally, the terms "resource", "message", "user agent", "origin server",
-"gateway", "intermediary", "proxy", and "tunnel" are defined in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-3" class="relref">Section 3</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.<a href="#section-2.2-6" class="pilcrow">¶</a></p>
+"gateway", "intermediary", "proxy", and "tunnel" are defined in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-3" class="relref">Section 3</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>.<a href="#section-2.2-6" class="pilcrow">¶</a></p>
 <p id="section-2.2-7">Packet diagrams in this document use the format defined in
 <span><a href="https://rfc-editor.org/rfc/rfc9000#section-1.3" class="relref">Section 1.3</a> of [<a href="#QUIC-TRANSPORT" class="xref">QUIC-TRANSPORT</a>]</span> to illustrate the order and size of fields.<a href="#section-2.2-7" class="pilcrow">¶</a></p>
 </section>
@@ -1645,12 +1645,12 @@ determined to be the most appropriate response for that request given the state
 of the target resource at the time of response message origination by (or at the
 direction of) the origin server identified within the target URI.  Locating an
 authoritative server for an HTTP URI is discussed in
-<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-4.3" class="relref">Section 4.3</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-4.3" class="relref">Section 4.3</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 <p id="section-3.1-2">The "https" scheme associates authority with possession of a certificate that
 the client considers to be trustworthy for the host identified by the authority
 component of the URI.  Upon receiving a server certificate in the TLS handshake,
 the client <span class="bcp14">MUST</span> verify that the certificate is an acceptable match for the URI's
-origin server using the process described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-4.3.4" class="relref">Section 4.3.4</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>. If
+origin server using the process described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-4.3.4" class="relref">Section 4.3.4</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>. If
 the certificate cannot be verified with respect to the URI's origin server, the
 client <span class="bcp14">MUST NOT</span> consider the server authoritative for that origin.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
 <p id="section-3.1-3">A client <span class="bcp14">MAY</span> attempt access to a resource with an "https" URI by resolving the
@@ -1747,7 +1747,7 @@ server closes the connection.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
 <p id="section-3.3-2">Once a connection to a server endpoint exists, this connection <span class="bcp14">MAY</span> be reused for
 requests with multiple different URI authority components.  To use an existing
 connection for a new origin, clients <span class="bcp14">MUST</span> validate the certificate presented by
-the server for the new origin server using the process described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-4.3.4" class="relref">Section 4.3.4</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.  This implies that clients will need to retain the
+the server for the new origin server using the process described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-4.3.4" class="relref">Section 4.3.4</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>.  This implies that clients will need to retain the
 server certificate and any additional information needed to verify that
 certificate; clients that do not do so will be unable to reuse the connection
 for additional origins.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
@@ -1773,7 +1773,7 @@ endpoints can reliably determine whether previously sent frames have been
 processed and gracefully complete or terminate any necessary remaining tasks.<a href="#section-3.3-5" class="pilcrow">¶</a></p>
 <p id="section-3.3-6">A server that does not wish clients to reuse HTTP/3 connections for a particular
 origin can indicate that it is not authoritative for a request by sending a 421
-(Misdirected Request) status code in response to the request; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-7.4" class="relref">Section 7.4</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.<a href="#section-3.3-6" class="pilcrow">¶</a></p>
+(Misdirected Request) status code in response to the request; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-7.4" class="relref">Section 7.4</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>.<a href="#section-3.3-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1792,7 +1792,7 @@ origin can indicate that it is not authoritative for a request by sending a 421
 bidirectional QUIC stream; see <a href="#request-streams" class="xref">Section 6.1</a>.  A client <span class="bcp14">MUST</span> send only a
 single request on a given stream.  A server sends zero or more interim HTTP
 responses on the same stream as the request, followed by a single final HTTP
-response, as detailed below. See <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-15" class="relref">Section 15</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span> for a description
+response, as detailed below. See <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-15" class="relref">Section 15</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span> for a description
 of interim and final HTTP responses.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 <p id="section-4.1-2">Pushed responses are sent on a server-initiated unidirectional QUIC stream; see
 <a href="#push-streams" class="xref">Section 6.2.2</a>.  A server sends zero or more interim HTTP responses, followed
@@ -1811,7 +1811,7 @@ response following a final HTTP response <span class="bcp14">MUST</span> be trea
           <li id="section-4.1-5.3">optionally, the trailer section, if present, sent as a single HEADERS frame.<a href="#section-4.1-5.3" class="pilcrow">¶</a>
 </li>
         </ol>
-<p id="section-4.1-6">Header and trailer sections are described in Sections <a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-6.3" class="relref">6.3</a> and <a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-6.5" class="relref">6.5</a> of <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>; the content is described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-6.4" class="relref">Section 6.4</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.<a href="#section-4.1-6" class="pilcrow">¶</a></p>
+<p id="section-4.1-6">Header and trailer sections are described in Sections <a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-6.3" class="relref">6.3</a> and <a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-6.5" class="relref">6.5</a> of <span>[<a href="#HTTP" class="xref">HTTP</a>]</span>; the content is described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-6.4" class="relref">Section 6.4</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>.<a href="#section-4.1-6" class="pilcrow">¶</a></p>
 <p id="section-4.1-7">Receipt of an invalid sequence of frames <span class="bcp14">MUST</span> be treated as a connection error
 of type H3_FRAME_UNEXPECTED; see <a href="#errors" class="xref">Section 8</a>.  In particular, a DATA frame before
 any HEADERS frame, or a HEADERS or DATA frame after the trailing HEADERS frame,
@@ -1830,10 +1830,10 @@ interleaved with other frames described in this section.<a href="#section-4.1-9"
 table. While these updates are not directly part of the message exchange, they
 must be received and processed before the message can be consumed.  See
 <a href="#header-formatting" class="xref">Section 4.1.1</a> for more details.<a href="#section-4.1-10" class="pilcrow">¶</a></p>
-<p id="section-4.1-11">Transfer codings (see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-messaging-19#section-6.1" class="relref">Section 6.1</a> of [<a href="#HTTP11" class="xref">HTTP11</a>]</span>) are not defined for HTTP/3;
+<p id="section-4.1-11">Transfer codings (see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-messaging-19#section-7" class="relref">Section 7</a> of [<a href="#HTTP11" class="xref">HTTP11</a>]</span>) are not defined for HTTP/3;
 the Transfer-Encoding header field <span class="bcp14">MUST NOT</span> be used.<a href="#section-4.1-11" class="pilcrow">¶</a></p>
 <p id="section-4.1-12">A response <span class="bcp14">MAY</span> consist of multiple messages when and only when one or more
-interim responses (1xx; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-15.2" class="relref">Section 15.2</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>) precede a final
+interim responses (1xx; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-15.2" class="relref">Section 15.2</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>) precede a final
 response to the same request.  Interim responses do not contain content
 or trailer sections.<a href="#section-4.1-12" class="pilcrow">¶</a></p>
 <p id="section-4.1-13">An HTTP request/response exchange fully consumes a client-initiated
@@ -1865,11 +1865,11 @@ continue sending the body of the request and close the stream normally.<a href="
 <a href="#section-4.1.1" class="section-number selfRef">4.1.1. </a><a href="#name-field-formatting-and-compre" class="section-name selfRef">Field Formatting and Compression</a>
           </h4>
 <p id="section-4.1.1-1">HTTP messages carry metadata as a series of key-value pairs called "HTTP
-fields"; see Sections <a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-6.3" class="relref">6.3</a> and <a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-6.5" class="relref">6.5</a> of <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>. For a listing of registered
-HTTP fields, see the "Hypertext Transfer Protocol (HTTP) Field Name Registry"
+fields"; see Sections <a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-6.3" class="relref">6.3</a> and <a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-6.5" class="relref">6.5</a> of <span>[<a href="#HTTP" class="xref">HTTP</a>]</span>. For a listing of registered HTTP
+fields, see the "Hypertext Transfer Protocol (HTTP) Field Name Registry"
 maintained at <span><a href="https://www.iana.org/assignments/http-fields/">https://www.iana.org/assignments/http-fields/</a></span>.<a href="#section-4.1.1-1" class="pilcrow">¶</a></p>
 <p id="section-4.1.1-2">Field names are strings containing a subset of ASCII characters. Properties of
-HTTP field names and values are discussed in more detail in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-5.1" class="relref">Section 5.1</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>. As in HTTP/2, characters in field names <span class="bcp14">MUST</span> be converted to
+HTTP field names and values are discussed in more detail in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-5.1" class="relref">Section 5.1</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>. As in HTTP/2, characters in field names <span class="bcp14">MUST</span> be converted to
 lowercase prior to their encoding. A request or response containing uppercase
 characters in field names <span class="bcp14">MUST</span> be treated as malformed (<a href="#malformed" class="xref">Section 4.1.3</a>).<a href="#section-4.1.1-2" class="pilcrow">¶</a></p>
 <p id="section-4.1.1-3">Like HTTP/2, HTTP/3 does not use the Connection header field to indicate
@@ -1881,7 +1881,7 @@ connection-specific fields <span class="bcp14">MUST</span> be treated as malform
 HTTP/3 request header; when it is, it <span class="bcp14">MUST NOT</span> contain any value other than
 "trailers".<a href="#section-4.1.1-4" class="pilcrow">¶</a></p>
 <p id="section-4.1.1-5">An intermediary transforming an HTTP/1.x message to HTTP/3 <span class="bcp14">MUST</span> remove
-connection-specific header fields as discussed in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-7.6.1" class="relref">Section 7.6.1</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>, or their messages will be treated by other HTTP/3 endpoints as
+connection-specific header fields as discussed in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-7.6.1" class="relref">Section 7.6.1</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>, or their messages will be treated by other HTTP/3 endpoints as
 malformed (<a href="#malformed" class="xref">Section 4.1.3</a>).<a href="#section-4.1.1-5" class="pilcrow">¶</a></p>
 <div id="pseudo-header-fields">
 <section id="section-4.1.1.1">
@@ -1910,7 +1910,7 @@ malformed (<a href="#malformed" class="xref">Section 4.1.3</a>).<a href="#sectio
 <span class="break"></span><dl class="dlParallel" id="section-4.1.1.1-6">
               <dt id="section-4.1.1.1-6.1">":method":</dt>
               <dd style="margin-left: 1.5em" id="section-4.1.1.1-6.2">
-                <p id="section-4.1.1.1-6.2.1">Contains the HTTP method (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-9" class="relref">Section 9</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>)<a href="#section-4.1.1.1-6.2.1" class="pilcrow">¶</a></p>
+                <p id="section-4.1.1.1-6.2.1">Contains the HTTP method (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-9" class="relref">Section 9</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>)<a href="#section-4.1.1.1-6.2.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
 <dt id="section-4.1.1.1-6.3">":scheme":</dt>
@@ -1942,7 +1942,7 @@ subcomponent for URIs of scheme "http" or "https".<a href="#section-4.1.1.1-6.10
               <dd style="margin-left: 1.5em" id="section-4.1.1.1-6.12">
                 <p id="section-4.1.1.1-6.12.1">To ensure that the HTTP/1.1 request line can be reproduced accurately, this
 pseudo-header field <span class="bcp14">MUST</span> be omitted when translating from an HTTP/1.1
-request that has a request target in origin or asterisk form; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-7.1" class="relref">Section 7.1</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.  Clients that generate HTTP/3 requests directly
+request that has a request target in origin or asterisk form; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-7.1" class="relref">Section 7.1</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>.  Clients that generate HTTP/3 requests directly
 <span class="bcp14">SHOULD</span> use the ":authority" pseudo-header field instead of the Host field.
 An intermediary that converts an HTTP/3 request to HTTP/1.1 <span class="bcp14">MUST</span> create a
 Host field if one is not present in a request by copying the value of the
@@ -1964,7 +1964,7 @@ asterisk form includes the value '*' for the ":path" pseudo-header field.<a href
 value of '/'.  The exception to this rule is an OPTIONS request for an
 "http" or "https" URI that does not include a path component; these <span class="bcp14">MUST</span>
 include a ":path" pseudo-header field with a value of '*'; see
-<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-7.1" class="relref">Section 7.1</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.<a href="#section-4.1.1.1-6.16.1" class="pilcrow">¶</a></p>
+<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-7.1" class="relref">Section 7.1</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>.<a href="#section-4.1.1.1-6.16.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 </dl>
@@ -1983,7 +1983,7 @@ values for those pseudo-header fields is malformed (<a href="#malformed" class="
 <p id="section-4.1.1.1-10">HTTP/3 does not define a way to carry the version identifier that is included in
 the HTTP/1.1 request line.<a href="#section-4.1.1.1-10" class="pilcrow">¶</a></p>
 <p id="section-4.1.1.1-11">For responses, a single ":status" pseudo-header field is defined that carries
-the HTTP status code; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-15" class="relref">Section 15</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.  This pseudo-header
+the HTTP status code; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-15" class="relref">Section 15</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>.  This pseudo-header
 field <span class="bcp14">MUST</span> be included in all responses; otherwise, the response is malformed
 (see <a href="#malformed" class="xref">Section 4.1.3</a>).<a href="#section-4.1.1.1-11" class="pilcrow">¶</a></p>
 <p id="section-4.1.1.1-12">HTTP/3 does not define a way to carry the version or reason phrase that is
@@ -2026,7 +2026,7 @@ as a number of bytes in the SETTINGS_MAX_FIELD_SECTION_SIZE parameter. An
 implementation that has received this parameter <span class="bcp14">SHOULD NOT</span> send an HTTP message
 header that exceeds the indicated size, as the peer will likely refuse to
 process it.  However, an HTTP message can traverse one or more intermediaries
-before reaching the origin server; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-3.7" class="relref">Section 3.7</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.  Because
+before reaching the origin server; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-3.7" class="relref">Section 3.7</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>.  Because
 this limit is applied separately by each implementation that processes the
 message, messages below this limit are not guaranteed to be accepted.<a href="#section-4.1.1.3-2" class="pilcrow">¶</a></p>
 </section>
@@ -2070,7 +2070,7 @@ idempotent actions such as GET, PUT, or DELETE can be safely retried; a client
 <span class="bcp14">SHOULD NOT</span> automatically retry a request with a non-idempotent method unless it
 has some means to know that the request semantics are idempotent
 independent of the method or some means to detect that the original request was
-never applied.  See <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-9.2.2" class="relref">Section 9.2.2</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span> for more details.<a href="#section-4.1.2-6" class="pilcrow">¶</a></p>
+never applied.  See <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-9.2.2" class="relref">Section 9.2.2</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span> for more details.<a href="#section-4.1.2-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="malformed">
@@ -2097,7 +2097,7 @@ frames but is invalid due to:<a href="#section-4.1.3-1" class="pilcrow">¶</a></
 </li>
           </ul>
 <p id="section-4.1.3-3">A request or response that is defined as having content when it contains a
-Content-Length header field (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-6.4.1" class="relref">Section 6.4.1</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>),
+Content-Length header field (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-6.4.1" class="relref">Section 6.4.1</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>),
 is malformed if the value of a Content-Length header field does not equal the
 sum of the DATA frame lengths received. A response that is defined as never
 having content, even when a Content-Length is present, can have a non-zero
@@ -2121,7 +2121,7 @@ permissive can expose implementations to these vulnerabilities.<a href="#section
 <a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-the-connect-method" class="section-name selfRef">The CONNECT Method</a>
         </h3>
 <p id="section-4.2-1">The CONNECT method requests that the recipient establish a tunnel to the
-destination origin server identified by the request-target; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-9.3.6" class="relref">Section 9.3.6</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>. It is primarily used with HTTP proxies to establish a TLS
+destination origin server identified by the request-target; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-9.3.6" class="relref">Section 9.3.6</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>. It is primarily used with HTTP proxies to establish a TLS
 session with an origin server for the purposes of interacting with "https"
 resources.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
 <p id="section-4.2-2">In HTTP/1.x, CONNECT is used to convert an entire HTTP connection into a tunnel
@@ -2135,7 +2135,7 @@ a tunnel over a single stream.<a href="#section-4.2-2" class="pilcrow">¶</a></p
 </li>
           <li class="normal" id="section-4.2-4.3">The ":authority" pseudo-header field contains the host and port to connect to
 (equivalent to the authority-form of the request-target of CONNECT requests;
-see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-7.1" class="relref">Section 7.1</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>).<a href="#section-4.2-4.3" class="pilcrow">¶</a>
+see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-7.1" class="relref">Section 7.1</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>).<a href="#section-4.2-4.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-4.2-5">The request stream remains open at the end of the request to carry the data to
@@ -2144,7 +2144,7 @@ is malformed; see <a href="#malformed" class="xref">Section 4.1.3</a>.<a href="#
 <p id="section-4.2-6">A proxy that supports CONNECT establishes a TCP connection (<span>[<a href="#RFC0793" class="xref">RFC0793</a>]</span>) to the
 server identified in the ":authority" pseudo-header field.  Once this connection
 is successfully established, the proxy sends a HEADERS frame containing a 2xx
-series status code to the client, as defined in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-15.3" class="relref">Section 15.3</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.<a href="#section-4.2-6" class="pilcrow">¶</a></p>
+series status code to the client, as defined in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-15.3" class="relref">Section 15.3</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>.<a href="#section-4.2-6" class="pilcrow">¶</a></p>
 <p id="section-4.2-7">All DATA frames on the stream correspond to data sent or received on the TCP
 connection. The payload of any DATA frame sent by the client is transmitted by
 the proxy to the TCP server; data received from the TCP server is packaged into
@@ -2172,7 +2172,7 @@ implementation permits it, the proxy <span class="bcp14">SHOULD</span> send a TC
 set.<a href="#section-4.2-10" class="pilcrow">¶</a></p>
 <p id="section-4.2-11">Since CONNECT creates a tunnel to an arbitrary server, proxies that support
 CONNECT <span class="bcp14">SHOULD</span> restrict its use to a set of known ports or a list of safe
-request targets; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-9.3.6" class="relref">Section 9.3.6</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span> for more details.<a href="#section-4.2-11" class="pilcrow">¶</a></p>
+request targets; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-9.3.6" class="relref">Section 9.3.6</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span> for more details.<a href="#section-4.2-11" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="http-upgrade">
@@ -2180,8 +2180,8 @@ request targets; see <span><a href="https://datatracker.ietf.org/doc/html/draft-
         <h3 id="name-http-upgrade">
 <a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-http-upgrade" class="section-name selfRef">HTTP Upgrade</a>
         </h3>
-<p id="section-4.3-1">HTTP/3 does not support the HTTP Upgrade mechanism (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-7.8" class="relref">Section 7.8</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>) or the 101 (Switching Protocols) informational status code
-(<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-15.2.2" class="relref">Section 15.2.2</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>).<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-1">HTTP/3 does not support the HTTP Upgrade mechanism (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-7.8" class="relref">Section 7.8</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>) or the 101 (Switching Protocols) informational status code
+(<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-15.2.2" class="relref">Section 15.2.2</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>).<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="server-push">
@@ -2223,9 +2223,9 @@ be fulfilling a previous promise.<a href="#section-4.4-6" class="pilcrow">¶</a>
 <p id="section-4.4-7">Not all requests can be pushed.  A server <span class="bcp14">MAY</span> push requests that have the
 following properties:<a href="#section-4.4-7" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4.4-8.1">cacheable; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-9.2.3" class="relref">Section 9.2.3</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span><a href="#section-4.4-8.1" class="pilcrow">¶</a>
+<li class="normal" id="section-4.4-8.1">cacheable; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-9.2.3" class="relref">Section 9.2.3</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span><a href="#section-4.4-8.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-4.4-8.2">safe; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-9.2.1" class="relref">Section 9.2.1</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span><a href="#section-4.4-8.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-4.4-8.2">safe; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-9.2.1" class="relref">Section 9.2.1</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span><a href="#section-4.4-8.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-4.4-8.3">does not include a request body or trailer section<a href="#section-4.4-8.3" class="pilcrow">¶</a>
 </li>
@@ -3393,7 +3393,7 @@ apply to <span>[<a href="#QUIC-TRANSPORT" class="xref">QUIC-TRANSPORT</a>]</span
 <a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-server-authority" class="section-name selfRef">Server Authority</a>
         </h3>
 <p id="section-10.1-1">HTTP/3 relies on the HTTP definition of authority. The security considerations
-of establishing authority are discussed in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-17.1" class="relref">Section 17.1</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.<a href="#section-10.1-1" class="pilcrow">¶</a></p>
+of establishing authority are discussed in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-17.1" class="relref">Section 17.1</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>.<a href="#section-10.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="cross-protocol-attacks">
@@ -3415,17 +3415,17 @@ authenticated transports.<a href="#section-10.2-2" class="pilcrow">¶</a></p>
 <a href="#section-10.3" class="section-number selfRef">10.3. </a><a href="#name-intermediary-encapsulation-" class="section-name selfRef">Intermediary-Encapsulation Attacks</a>
         </h3>
 <p id="section-10.3-1">The HTTP/3 field encoding allows the expression of names that are not valid
-field names in the syntax used by HTTP (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-5.1" class="relref">Section 5.1</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>). Requests
+field names in the syntax used by HTTP (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-5.1" class="relref">Section 5.1</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>). Requests
 or responses containing invalid field names <span class="bcp14">MUST</span> be treated as malformed
 (<a href="#malformed" class="xref">Section 4.1.3</a>).  Therefore, an intermediary cannot translate an HTTP/3 request
 or response containing an invalid field name into an HTTP/1.1 message.<a href="#section-10.3-1" class="pilcrow">¶</a></p>
 <p id="section-10.3-2">Similarly, HTTP/3 can transport field values that are not valid. While most
 values that can be encoded will not alter field parsing, carriage return (CR,
-ASCII 0x0d), line feed (LF, ASCII 0x0d), and the zero character (NUL, ASCII
-0x0d) might be exploited by an attacker if they are translated verbatim. Any
+ASCII 0x0d), line feed (LF, ASCII 0x0a), and the zero character (NUL, ASCII
+0x00) might be exploited by an attacker if they are translated verbatim. Any
 request or response that contains a character not permitted in a field value
 <span class="bcp14">MUST</span> be treated as malformed (<a href="#malformed" class="xref">Section 4.1.3</a>).  Valid characters are defined by
-the "field-content" ABNF rule in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-5.5" class="relref">Section 5.5</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.<a href="#section-10.3-2" class="pilcrow">¶</a></p>
+the "field-content" ABNF rule in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-5.5" class="relref">Section 5.5</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>.<a href="#section-10.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="cacheability-of-pushed-responses">
@@ -3530,7 +3530,7 @@ terminates.<a href="#section-10.5.2-2" class="pilcrow">¶</a></p>
 <p id="section-10.6-1">Compression can allow an attacker to recover secret data when it is compressed
 in the same context as data under attacker control. HTTP/3 enables compression
 of fields (<a href="#header-formatting" class="xref">Section 4.1.1</a>); the following concerns also apply to the use
-of HTTP compressed content-codings; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-8.4.1" class="relref">Section 8.4.1</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.<a href="#section-10.6-1" class="pilcrow">¶</a></p>
+of HTTP compressed content-codings; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-8.4.1" class="relref">Section 8.4.1</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>.<a href="#section-10.6-1" class="pilcrow">¶</a></p>
 <p id="section-10.6-2">There are demonstrable attacks on compression that exploit the characteristics
 of the web (e.g., <span>[<a href="#BREACH" class="xref">BREACH</a>]</span>).  The attacker induces multiple requests
 containing varying plaintext, observing the length of the resulting ciphertext
@@ -4189,6 +4189,10 @@ IANA and <span class="bcp14">MUST NOT</span> appear in the listing of assigned v
         <dd>
 <span class="refAuthor">Fielding, R. T.</span>, <span class="refAuthor">Nottingham, M.</span>, and <span class="refAuthor">J. Reschke</span>, <span class="refTitle">"HTTP Caching"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-cache-19</span>, <time datetime="2021-09-12" class="refDate">12 September 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cache-19">https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cache-19</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="HTTP">[HTTP]</dt>
+        <dd>
+<span class="refAuthor">Fielding, R. T.</span>, <span class="refAuthor">Nottingham, M.</span>, and <span class="refAuthor">J. Reschke</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-semantics-19</span>, <time datetime="2021-09-12" class="refDate">12 September 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19">https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="HTTP-REPLAY">[HTTP-REPLAY]</dt>
         <dd>
 <span class="refAuthor">Thomson, M.</span>, <span class="refAuthor">Nottingham, M.</span>, and <span class="refAuthor">W. Tarreau</span>, <span class="refTitle">"Using Early Data in HTTP"</span>, <span class="seriesInfo">RFC 8470</span>, <span class="seriesInfo">DOI 10.17487/RFC8470</span>, <time datetime="2018-09" class="refDate">September 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8470">https://www.rfc-editor.org/rfc/rfc8470</a>&gt;</span>. </dd>
@@ -4228,10 +4232,6 @@ IANA and <span class="bcp14">MUST NOT</span> appear in the listing of assigned v
 <dt id="RFC8174">[RFC8174]</dt>
         <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="SEMANTICS">[SEMANTICS]</dt>
-        <dd>
-<span class="refAuthor">Fielding, R. T.</span>, <span class="refAuthor">Nottingham, M.</span>, and <span class="refAuthor">J. Reschke</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-semantics-19</span>, <time datetime="2021-09-12" class="refDate">12 September 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19">https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="URI">[URI]</dt>
       <dd>
