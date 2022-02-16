@@ -1735,7 +1735,7 @@ Table of Contents
    GOAWAY Frame {
      Type (i) = 0x07,
      Length (i),
-     Stream ID/Push ID (..),
+     Stream ID/Push ID (i),
    }
 
                            Figure 9: GOAWAY Frame
