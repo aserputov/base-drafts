@@ -4,7 +4,7 @@
 
 Internet Engineering Task Force (IETF)                    M. Bishop, Ed.
 Request for Comments: 9114                                        Akamai
-Category: Standards Track                               15 February 2022
+Category: Standards Track                               16 February 2022
 ISSN: 2070-1721
 
 
@@ -126,7 +126,7 @@ Table of Contents
        A.2.2.  Field Compression Differences
        A.2.3.  Flow-Control Differences
        A.2.4.  Guidance for New Frame Type Definitions
-       A.2.5.  Comparison between HTTP/2 and HTTP/3 Frame Types
+       A.2.5.  Comparison of HTTP/2 and HTTP/3 Frame Types
      A.3.  HTTP/2 SETTINGS Parameters
      A.4.  HTTP/2 Error Codes
        A.4.1.  Mapping between HTTP/2 and HTTP/3 Errors
@@ -2524,14 +2524,14 @@ Table of Contents
 
    [QPACK]    Krasic, C., Bishop, M., and A. Frindell, Ed., "QPACK:
               Header Compression for HTTP over QUIC", Work in Progress,
-              Internet-Draft, draft-ietf-quic-qpack, 15 February 2022,
+              Internet-Draft, draft-ietf-quic-qpack, 16 February 2022,
               <https://datatracker.ietf.org/doc/html/draft-ietf-quic-
               qpack>.
 
    [QUIC-TRANSPORT]
               Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", RFC 9000,
-              DOI 10.17487/RFC9000, 15 February 2022,
+              DOI 10.17487/RFC9000, 16 February 2022,
               <https://www.rfc-editor.org/rfc/rfc9000>.
 
    [RFC0793]  Postel, J., "Transmission Control Protocol", STD 7,
@@ -2754,7 +2754,7 @@ A.2.4.  Guidance for New Frame Type Definitions
    ordering, but would not be harmed by ordering, and are expected to be
    portable to HTTP/2.
 
-A.2.5.  Comparison between HTTP/2 and HTTP/3 Frame Types
+A.2.5.  Comparison of HTTP/2 and HTTP/3 Frame Types
 
    DATA (0x00):  Padding is not defined in HTTP/3 frames.  See
       Section 7.2.1.
