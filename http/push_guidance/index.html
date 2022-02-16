@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>quicwg/base-drafts http/push_guidance preview</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <style type="text/css">/*<![CDATA[*/
+      body { font-family: "Helvetica Neue","Open Sans", Helvetica, Calibri,sans-serif; }
+      h1, h2, td { font-family: "Helvetica Neue", "Roboto Condensed", "Open Sans", Helvetica, Calibri, sans-serif; }
+      h1 { font-size: 20px; } h2 { font-size: 16px; }
+      table { margin: 5px 10px; border-collapse: collapse; }
+      th, td { font-weight: normal; text-align: left; padding: 2px 5px; }
+      a:link { color: #000; } a:visited { color: #00a; }
+    /*]]>*/</style>
+  </head>
+  <body>
+    <h1>Editor's drafts for http/push_guidance branch of <a href="https://github.com/quicwg/base-drafts/tree/http/push_guidance">quicwg/base-drafts</a></h1>
+    <p>View <a href="issues.html">saved issues</a>, or the latest GitHub <a href="https://github.com/quicwg/base-drafts/issues">issues</a> and <a href="https://github.com/quicwg/base-drafts/pulls">pull requests</a> in the <a href="https://github.com/quicwg/base-drafts">repo</a>.</p>
+    <table id="branch-http/push_guidance">
+      <tr>
+        <td><a href="./rfc9000.html" class="html rfc9000">QUIC Transport Protocol</a></td>
+        <td><a href="./rfc9000.txt" class="txt rfc9000">plain text</a></td>
+        <td><a href="https://www.ietf.org/rfcdiff?url1=https://quicwg.github.io/base-drafts/rfc9000.txt&amp;url2=https://quicwg.github.io/base-drafts/http/push_guidance/rfc9000.txt">diff with main</a></td>
+      </tr>
+      <tr>
+        <td><a href="./rfc9002.html" class="html rfc9002">QUIC Loss Detection</a></td>
+        <td><a href="./rfc9002.txt" class="txt rfc9002">plain text</a></td>
+        <td><a href="https://www.ietf.org/rfcdiff?url1=https://quicwg.github.io/base-drafts/rfc9002.txt&amp;url2=https://quicwg.github.io/base-drafts/http/push_guidance/rfc9002.txt">diff with main</a></td>
+      </tr>
+      <tr>
+        <td><a href="./rfc8999.html" class="html rfc8999">QUIC Invariants</a></td>
+        <td><a href="./rfc8999.txt" class="txt rfc8999">plain text</a></td>
+        <td><a href="https://www.ietf.org/rfcdiff?url1=https://quicwg.github.io/base-drafts/rfc8999.txt&amp;url2=https://quicwg.github.io/base-drafts/http/push_guidance/rfc8999.txt">diff with main</a></td>
+      </tr>
+      <tr>
+        <td><a href="./draft-ietf-quic-qpack.html" class="html draft-ietf-quic-qpack">QPACK</a></td>
+        <td><a href="./draft-ietf-quic-qpack.txt" class="txt draft-ietf-quic-qpack">plain text</a></td>
+        <td><a href="https://www.ietf.org/rfcdiff?url1=https://quicwg.github.io/base-drafts/draft-ietf-quic-qpack.txt&amp;url2=https://quicwg.github.io/base-drafts/http/push_guidance/draft-ietf-quic-qpack.txt">diff with main</a></td>
+      </tr>
+      <tr>
+        <td><a href="./rfc9114.html" class="html rfc9114">HTTP/3</a></td>
+        <td><a href="./rfc9114.txt" class="txt rfc9114">plain text</a></td>
+        <td><a href="https://www.ietf.org/rfcdiff?url1=https://quicwg.github.io/base-drafts/rfc9114.txt&amp;url2=https://quicwg.github.io/base-drafts/http/push_guidance/rfc9114.txt">diff with main</a></td>
+      </tr>
+      <tr>
+        <td><a href="./rfc9001.html" class="html rfc9001">Using TLS to Secure QUIC</a></td>
+        <td><a href="./rfc9001.txt" class="txt rfc9001">plain text</a></td>
+        <td><a href="https://www.ietf.org/rfcdiff?url1=https://quicwg.github.io/base-drafts/rfc9001.txt&amp;url2=https://quicwg.github.io/base-drafts/http/push_guidance/rfc9001.txt">diff with main</a></td>
+      </tr>
+    </table>
+    <script>
+// @licstart
+//  Any copyright is dedicated to the Public Domain.
+//  http://creativecommons.org/publicdomain/zero/1.0/
+// @licend
+window.onload = function() {
+  var referrer_branch = 'main';
+  // e.g., "https://github.com/user/repo/tree/main"
+  var chunks = document.referrer.split("/");
+  if (chunks[2] === 'github.com' && chunks[5] === 'tree') {
+    referrer_branch = chunks[6];
+  }
+  let branch = document.querySelector('#branch-' + referrer_branch);
+  let h = document.location.hash.substring(1);
+  if (h === 'show') {
+    document.location.hash = '#' + branch.id;
+  } else if (branch && h.startsWith('go')) {
+    let e = branch.querySelector(h.substring(2));
+    if (e && e.href) {
+      document.location = e.href;
+    }
+  }
+};
+    </script>
+  </body>
+</html>
