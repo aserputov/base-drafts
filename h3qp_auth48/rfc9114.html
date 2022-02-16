@@ -2166,13 +2166,18 @@ data from the target of the CONNECT.<a href="#section-4.2-9" class="pilcrow">¶<
 <p id="section-4.2-10">A TCP connection error is signaled by abruptly terminating the stream. A proxy
 treats any error in the TCP connection, which includes receiving a TCP segment
 with the RST bit set, as a stream error of type H3_CONNECT_ERROR; see
-<a href="#errors" class="xref">Section 8</a>.  Correspondingly, if a proxy detects an error with the stream or the
-QUIC connection, it <span class="bcp14">MUST</span> close the TCP connection.  If the underlying TCP
-implementation permits it, the proxy <span class="bcp14">SHOULD</span> send a TCP segment with the RST bit
-set.<a href="#section-4.2-10" class="pilcrow">¶</a></p>
-<p id="section-4.2-11">Since CONNECT creates a tunnel to an arbitrary server, proxies that support
+<a href="#errors" class="xref">Section 8</a>.<a href="#section-4.2-10" class="pilcrow">¶</a></p>
+<p id="section-4.2-11">Correspondingly, if a proxy detects an error with the stream or the QUIC
+connection, it <span class="bcp14">MUST</span> close the TCP connection.  If the proxy detects that the
+client has reset the stream or aborted reading from the stream, it <span class="bcp14">MUST</span> close
+the TCP connection.  If the stream is reset or reading is aborted by the client,
+a proxy <span class="bcp14">SHOULD</span> perform the same operation on the other direction in order to
+ensure that both directions of the stream are cancelled. In all these cases, if
+the underlying TCP implementation permits it, the proxy <span class="bcp14">SHOULD</span> send a TCP
+segment with the RST bit set.<a href="#section-4.2-11" class="pilcrow">¶</a></p>
+<p id="section-4.2-12">Since CONNECT creates a tunnel to an arbitrary server, proxies that support
 CONNECT <span class="bcp14">SHOULD</span> restrict its use to a set of known ports or a list of safe
-request targets; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-9.3.6" class="relref">Section 9.3.6</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span> for more details.<a href="#section-4.2-11" class="pilcrow">¶</a></p>
+request targets; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-9.3.6" class="relref">Section 9.3.6</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span> for more details.<a href="#section-4.2-12" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="http-upgrade">
