@@ -66,13 +66,14 @@ Table of Contents
      4.1.  HTTP Message Framing
        4.1.1.  Request Cancellation and Rejection
        4.1.2.  Malformed Requests and Responses
-       4.1.3.  HTTP Fields
-     4.2.  HTTP Control Data
-       4.2.1.  Request Pseudo-Header Fields
-       4.2.2.  Response Pseudo-Header Fields
-     4.3.  The CONNECT Method
-     4.4.  HTTP Upgrade
-     4.5.  Server Push
+     4.2.  HTTP Fields
+       4.2.1.  Field Compression
+     4.3.  HTTP Control Data
+       4.3.1.  Request Pseudo-Header Fields
+       4.3.2.  Response Pseudo-Header Fields
+     4.4.  The CONNECT Method
+     4.5.  HTTP Upgrade
+     4.6.  Server Push
    5.  Connection Closure
      5.1.  Idle Connections
      5.2.  Connection Shutdown
@@ -492,7 +493,7 @@ Table of Contents
    stream; see Section 6.2.2.  A server sends zero or more interim HTTP
    responses, followed by a single final HTTP response, in the same
    manner as a standard response.  Push is described in more detail in
-   Section 4.5.
+   Section 4.6.
 
    On a given stream, receipt of multiple requests or receipt of an
    additional HTTP response following a final HTTP response MUST be
@@ -522,7 +523,7 @@ Table of Contents
    A server MAY send one or more PUSH_PROMISE frames (Section 7.2.5)
    before, after, or interleaved with the frames of a response message.
    These PUSH_PROMISE frames are not part of the response; see
-   Section 4.5 for more details.  PUSH_PROMISE frames are not permitted
+   Section 4.6 for more details.  PUSH_PROMISE frames are not permitted
    on push streams; a pushed response that includes PUSH_PROMISE frames
    MUST be treated as a connection error of type H3_FRAME_UNEXPECTED;
    see Section 8.
@@ -534,7 +535,7 @@ Table of Contents
    The HEADERS and PUSH_PROMISE frames might reference updates to the
    QPACK dynamic table.  While these updates are not directly part of
    the message exchange, they must be received and processed before the
-   message can be consumed.  See Section 4.1.3 for more details.
+   message can be consumed.  See Section 4.2 for more details.
 
    Transfer codings (see Section 7 of [HTTP11]) are not defined for
    HTTP/3; the Transfer-Encoding header field MUST NOT be used.
@@ -547,7 +548,7 @@ Table of Contents
    An HTTP request/response exchange fully consumes a client-initiated
    bidirectional QUIC stream.  After sending a request, a client MUST
    close the stream for sending.  Unless using the CONNECT method (see
-   Section 4.3), clients MUST NOT make stream closure dependent on
+   Section 4.4), clients MUST NOT make stream closure dependent on
    receiving a response to their request.  After sending a final
    response, the server MUST close the stream for sending.  At this
    point, the QUIC stream is fully closed.
@@ -661,7 +662,7 @@ Table of Contents
    HTTP; they are deliberately strict because being permissive can
    expose implementations to these vulnerabilities.
 
-4.1.3.  HTTP Fields
+4.2.  HTTP Fields
 
    HTTP messages carry metadata as a series of key-value pairs called
    "HTTP fields"; see Sections 6.3 and 6.5 of [HTTP].  For a listing of
@@ -692,7 +693,7 @@ Table of Contents
    Section 7.6.1 of [HTTP], or their messages will be treated by other
    HTTP/3 endpoints as malformed (Section 4.1.2).
 
-4.1.3.1.  Field Compression
+4.2.1.  Field Compression
 
    [QPACK] describes a variation of HPACK that gives an encoder some
    control over how much head-of-line blocking can be caused by
@@ -710,7 +711,7 @@ Table of Contents
    context other than HTTP/2 or HTTP/3, such as an HTTP/1.1 connection,
    or a generic HTTP server application.
 
-4.1.3.2.  Header Size Constraints
+4.2.1.1.  Header Size Constraints
 
    An HTTP/3 implementation MAY impose a limit on the maximum size of
    the message header it will accept on an individual HTTP message.  A
@@ -732,7 +733,7 @@ Table of Contents
    implementation that processes the message, messages below this limit
    are not guaranteed to be accepted.
 
-4.2.  HTTP Control Data
+4.3.  HTTP Control Data
 
    Like HTTP/2, HTTP/3 employs a series of pseudo-header fields, where
    the field name begins with the ':' character (ASCII 0x3a).  These
@@ -757,7 +758,7 @@ Table of Contents
    pseudo-header field that appears in a header section after a regular
    header field MUST be treated as malformed (Section 4.1.2).
 
-4.2.1.  Request Pseudo-Header Fields
+4.3.1.  Request Pseudo-Header Fields
 
    The following pseudo-header fields are defined for requests:
 
@@ -804,7 +805,7 @@ Table of Contents
 
    All HTTP/3 requests MUST include exactly one value for the ":method",
    ":scheme", and ":path" pseudo-header fields, unless the request is a
-   CONNECT request; see Section 4.3.
+   CONNECT request; see Section 4.4.
 
    If the ":scheme" pseudo-header field identifies a scheme that has a
    mandatory authority component (including "http" and "https"), the
@@ -823,7 +824,7 @@ Table of Contents
    included in the HTTP/1.1 request line.  HTTP/3 requests implicitly
    have a protocol version of "3.0".
 
-4.2.2.  Response Pseudo-Header Fields
+4.3.2.  Response Pseudo-Header Fields
 
    For responses, a single ":status" pseudo-header field is defined that
    carries the HTTP status code; see Section 15 of [HTTP].  This pseudo-
@@ -834,7 +835,7 @@ Table of Contents
    that is included in an HTTP/1.1 status line.  HTTP/3 responses
    implicitly have a protocol version of "3.0".
 
-4.3.  The CONNECT Method
+4.4.  The CONNECT Method
 
    The CONNECT method requests that the recipient establish a tunnel to
    the destination origin server identified by the request-target; see
@@ -909,13 +910,13 @@ Table of Contents
    list of safe request targets; see Section 9.3.6 of [HTTP] for more
    details.
 
-4.4.  HTTP Upgrade
+4.5.  HTTP Upgrade
 
    HTTP/3 does not support the HTTP Upgrade mechanism (Section 7.8 of
    [HTTP]) or the 101 (Switching Protocols) informational status code
    (Section 15.2.2 of [HTTP]).
 
-4.5.  Server Push
+4.6.  Server Push
 
    Server push is an interaction mode that permits a server to push a
    request-response exchange to a client in anticipation of the client
@@ -1058,7 +1059,7 @@ Table of Contents
    identifier that indicates to the receiver the range of requests or
    pushes that were or might be processed in this connection.  The
    server sends a client-initiated bidirectional Stream ID; the client
-   sends a Push ID (Section 4.5).  Requests or pushes with the indicated
+   sends a Push ID (Section 4.6).  Requests or pushes with the indicated
    identifier or greater are rejected (Section 4.1.1) by the sender of
    the GOAWAY.  This identifier MAY be zero if no requests or pushes
    were processed.
@@ -1325,7 +1326,7 @@ Table of Contents
 
    Server push is an optional feature introduced in HTTP/2 that allows a
    server to initiate a response before a request has been made.  See
-   Section 4.5 for more details.
+   Section 4.6 for more details.
 
    A push stream is indicated by a stream type of 0x01, followed by the
    Push ID of the promise that it fulfills, encoded as a variable-length
@@ -1333,7 +1334,7 @@ Table of Contents
    frames, as defined in Section 7.2, and fulfills a promised server
    push by zero or more interim HTTP responses followed by a single
    final HTTP response, as defined in Section 4.1.  Server push and Push
-   IDs are described in Section 4.5.
+   IDs are described in Section 4.6.
 
    Only servers can push; if a server receives a client-initiated push
    stream, this MUST be treated as a connection error of type
@@ -1496,7 +1497,7 @@ Table of Contents
    The CANCEL_PUSH frame (type=0x03) is used to request cancellation of
    a server push prior to the push stream being received.  The
    CANCEL_PUSH frame identifies a server push by Push ID (see
-   Section 4.5), encoded as a variable-length integer.
+   Section 4.6), encoded as a variable-length integer.
 
    When a client sends a CANCEL_PUSH frame, it is indicating that it
    does not wish to receive the promised resource.  The server SHOULD
@@ -1538,7 +1539,7 @@ Table of Contents
 
    The CANCEL_PUSH frame carries a Push ID encoded as a variable-length
    integer.  The Push ID identifies the server push that is being
-   cancelled; see Section 4.5.  If a CANCEL_PUSH frame is received that
+   cancelled; see Section 4.6.  If a CANCEL_PUSH frame is received that
    references a Push ID greater than currently allowed on the
    connection, this MUST be treated as a connection error of type
    H3_ID_ERROR.
@@ -1612,7 +1613,7 @@ Table of Contents
    The following settings are defined in HTTP/3:
 
    SETTINGS_MAX_FIELD_SECTION_SIZE (0x06):  The default value is
-      unlimited.  See Section 4.1.3.2 for usage.
+      unlimited.  See Section 4.2.1.1 for usage.
 
    Setting identifiers of the format 0x1f * N + 0x21 for non-negative
    integer values of N are reserved to exercise the requirement that
@@ -1710,7 +1711,7 @@ Table of Contents
    The payload consists of:
 
    Push ID:  A variable-length integer that identifies the server push
-      operation.  A Push ID is used in push stream headers (Section 4.5)
+      operation.  A Push ID is used in push stream headers (Section 4.6)
       and CANCEL_PUSH frames (Section 7.2.3).
 
    Encoded Field Section:  QPACK-encoded request header fields for the
@@ -1748,7 +1749,7 @@ Table of Contents
    receipt of a PUSH_PROMISE frame as a connection error of type
    H3_FRAME_UNEXPECTED; see Section 8.
 
-   See Section 4.5 for a description of the overall server push
+   See Section 4.6 for a description of the overall server push
    mechanism.
 
 7.2.6.  GOAWAY
@@ -1817,7 +1818,7 @@ Table of Contents
 
    The MAX_PUSH_ID frame carries a single variable-length integer that
    identifies the maximum value for a Push ID that the server can use;
-   see Section 4.5.  A MAX_PUSH_ID frame cannot reduce the maximum Push
+   see Section 4.6.  A MAX_PUSH_ID frame cannot reduce the maximum Push
    ID; receipt of a MAX_PUSH_ID frame that contains a smaller value than
    previously received MUST be treated as a connection error of type
    H3_ID_ERROR.
@@ -2046,7 +2047,7 @@ Table of Contents
    authoritative tenant provides.
 
    Clients are required to reject pushed responses for which an origin
-   server is not authoritative; see Section 4.5.
+   server is not authoritative; see Section 4.6.
 
 10.5.  Denial-of-Service Considerations
 
@@ -2100,7 +2101,7 @@ Table of Contents
    memory for header fields.
 
    An endpoint can use the SETTINGS_MAX_FIELD_SECTION_SIZE
-   (Section 4.1.3.2) setting to advise peers of limits that might apply
+   (Section 4.2.1.1) setting to advise peers of limits that might apply
    on the size of field sections.  This setting is only advisory, so
    endpoints MAY choose to send field sections that exceed this limit
    and risk having the request or response being treated as malformed.
@@ -2132,7 +2133,7 @@ Table of Contents
 
    Compression can allow an attacker to recover secret data when it is
    compressed in the same context as data under attacker control.
-   HTTP/3 enables compression of fields (Section 4.1.3); the following
+   HTTP/3 enables compression of fields (Section 4.2); the following
    concerns also apply to the use of HTTP compressed content-codings;
    see Section 8.4.1 of [HTTP].
 
@@ -2529,7 +2530,7 @@ Table of Contents
             +================+=======+===============+========+
             | Control Stream |  0x00 | Section 6.2.1 | Both   |
             +----------------+-------+---------------+--------+
-            | Push Stream    |  0x01 | Section 4.5   | Server |
+            | Push Stream    |  0x01 | Section 4.6   | Server |
             +----------------+-------+---------------+--------+
 
                        Table 5: Initial Stream Types
