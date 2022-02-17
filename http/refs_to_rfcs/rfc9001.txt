@@ -2297,7 +2297,7 @@ Table of Contents
    [QUIC-HTTP]
               Bishop, M., Ed., "Hypertext Transfer Protocol Version 3
               (HTTP/3)", Work in Progress, Internet-Draft, draft-ietf-
-              quic-http-latest, 16 February 2022,
+              quic-http-latest, 17 February 2022,
               <https://datatracker.ietf.org/doc/html/draft-ietf-quic-
               http-latest>.
 
@@ -2746,11 +2746,9 @@ Authors' Addresses
 
    Martin Thomson (editor)
    Mozilla
-
    Email: mt@lowentropy.net
 
 
    Sean Turner (editor)
    sn3rd
-
    Email: sean@sn3rd.com

@@ -437,5 +437,4 @@ Author's Address
 
    Martin Thomson
    Mozilla
-
    Email: mt@lowentropy.net

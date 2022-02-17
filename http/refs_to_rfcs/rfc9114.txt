@@ -4,7 +4,7 @@
 
 Internet Engineering Task Force (IETF)                    M. Bishop, Ed.
 Request for Comments: 9114                                        Akamai
-Category: Standards Track                               16 February 2022
+Category: Standards Track                               17 February 2022
 ISSN: 2070-1721
 
 
@@ -2539,12 +2539,12 @@ Table of Contents
               April 2016, <https://www.rfc-editor.org/rfc/rfc7838>.
 
    [CACHING]  Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
-              Ed., "HTTP Caching", RFC 9111, DOI 10.17487/RFC9111, 16
-              February 2022, <https://www.rfc-editor.org/rfc/rfc9111>.
+              Ed., "HTTP Caching", RFC 9111, DOI 10.17487/RFC9111, 1
+              January 1970, <https://www.rfc-editor.org/rfc/rfc9111>.
 
    [HTTP]     Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
-              Ed., "HTTP Semantics", RFC 9110, DOI 10.17487/RFC9110, 16
-              February 2022, <https://www.rfc-editor.org/rfc/rfc9110>.
+              Ed., "HTTP Semantics", RFC 9110, DOI 10.17487/RFC9110, 1
+              January 1970, <https://www.rfc-editor.org/rfc/rfc9110>.
 
    [HTTP-REPLAY]
               Thomson, M., Nottingham, M., and W. Tarreau, "Using Early
@@ -2553,7 +2553,7 @@ Table of Contents
 
    [QPACK]    Krasic, C., Bishop, M., and A. Frindell, Ed., "QPACK:
               Header Compression for HTTP over QUIC", RFC 9204,
-              DOI 10.17487/RFC9204, 16 February 2022,
+              DOI 10.17487/RFC9204, 1 January 1970,
               <https://www.rfc-editor.org/rfc/rfc9204>.
 
    [QUIC-TRANSPORT]
@@ -2616,11 +2616,11 @@ Table of Contents
               <https://www.rfc-editor.org/rfc/rfc7541>.
 
    [HTTP11]   Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
-              Ed., "HTTP/1.1", RFC 9112, DOI 10.17487/RFC9112, 16
-              February 2022, <https://www.rfc-editor.org/rfc/rfc9112>.
+              Ed., "HTTP/1.1", RFC 9112, DOI 10.17487/RFC9112, 1 January
+              1970, <https://www.rfc-editor.org/rfc/rfc9112>.
 
    [HTTP2]    Thomson, M., Ed. and C. Benfield, Ed., "HTTP/2", RFC 9113,
-              DOI 10.17487/RFC9113, 16 February 2022,
+              DOI 10.17487/RFC9113, 1 January 1970,
               <https://www.rfc-editor.org/rfc/rfc9113>.
 
    [RFC6585]  Nottingham, M. and R. Fielding, "Additional HTTP Status
@@ -3027,5 +3027,4 @@ Author's Address
 
    Mike Bishop (editor)
    Akamai
-
    Email: mbishop@evequefou.be
