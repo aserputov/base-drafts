@@ -263,11 +263,11 @@ Table of Contents
 
 2.2.  Conventions and Terminology
 
-   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
-   "OPTIONAL" in this document are to be interpreted as described in BCP
-   14 [RFC2119] [RFC8174] when, and only when, they appear in all
-   capitals, as shown here.
+   The key words " MUST ", " MUST NOT ", " REQUIRED ", " SHALL ", "
+   SHALL NOT ", " SHOULD ", " SHOULD NOT ", " RECOMMENDED ", " NOT
+   RECOMMENDED ", " MAY ", and " OPTIONAL " in this document are to be
+   interpreted as described in BCP 14 [RFC2119] [RFC8174] when, and only
+   when, they appear in all capitals, as shown here.
 
    This document uses the variable-length integer encoding from
    [QUIC-TRANSPORT].
@@ -667,8 +667,8 @@ Table of Contents
    HTTP messages carry metadata as a series of key-value pairs called
    "HTTP fields"; see Sections 6.3 and 6.5 of [HTTP].  For a listing of
    registered HTTP fields, see the "Hypertext Transfer Protocol (HTTP)
-   Field Name Registry" maintained at https://www.iana.org/assignments/
-   http-fields/.
+   Field Name Registry" maintained at <https://www.iana.org/assignments/
+   http-fields/>.
 
    Field names are strings containing a subset of ASCII characters.
    Properties of HTTP field names and values are discussed in more
@@ -2523,7 +2523,7 @@ Table of Contents
    of the stream type, including the layout and semantics of the stream
    contents.
 
-   The entries in the following table are registered by this document.
+   The entries in Table 5 are registered by this document.
 
             +================+=======+===============+========+
             | Stream Type    | Value | Specification | Sender |
@@ -2548,17 +2548,13 @@ Table of Contents
               Alternative Services", RFC 7838, DOI 10.17487/RFC7838,
               April 2016, <https://www.rfc-editor.org/rfc/rfc7838>.
 
-   [CACHING]  Fielding, R. T., Nottingham, M., and J. Reschke, "HTTP
-              Caching", Work in Progress, Internet-Draft, draft-ietf-
-              httpbis-cache-19, 12 September 2021,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
-              cache-19>.
+   [CACHING]  Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
+              Ed., "HTTP Caching", RFC 9111, DOI 10.17487/RFC9111, 1
+              January 1970, <https://www.rfc-editor.org/rfc/rfc9111>.
 
-   [HTTP]     Fielding, R. T., Nottingham, M., and J. Reschke, "HTTP
-              Semantics", Work in Progress, Internet-Draft, draft-ietf-
-              httpbis-semantics-19, 12 September 2021,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
-              semantics-19>.
+   [HTTP]     Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
+              Ed., "HTTP Semantics", RFC 9110, DOI 10.17487/RFC9110, 1
+              January 1970, <https://www.rfc-editor.org/rfc/rfc9110>.
 
    [HTTP-REPLAY]
               Thomson, M., Nottingham, M., and W. Tarreau, "Using Early
@@ -2566,15 +2562,14 @@ Table of Contents
               2018, <https://www.rfc-editor.org/rfc/rfc8470>.
 
    [QPACK]    Krasic, C., Bishop, M., and A. Frindell, Ed., "QPACK:
-              Header Compression for HTTP over QUIC", Work in Progress,
-              Internet-Draft, draft-ietf-quic-qpack, 22 February 2022,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-quic-
-              qpack>.
+              Header Compression for HTTP over QUIC", RFC 9204,
+              DOI 10.17487/RFC9204, 1 January 1970,
+              <https://www.rfc-editor.org/rfc/rfc9204>.
 
    [QUIC-TRANSPORT]
               Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", RFC 9000,
-              DOI 10.17487/RFC9000, 22 February 2022,
+              DOI 10.17487/RFC9000, May 2021,
               <https://www.rfc-editor.org/rfc/rfc9000>.
 
    [RFC0793]  Postel, J., "Transmission Control Protocol", STD 7,
@@ -2630,16 +2625,13 @@ Table of Contents
               HTTP/2", RFC 7541, DOI 10.17487/RFC7541, May 2015,
               <https://www.rfc-editor.org/rfc/rfc7541>.
 
-   [HTTP11]   Fielding, R. T., Nottingham, M., and J. Reschke,
-              "HTTP/1.1", Work in Progress, Internet-Draft, draft-ietf-
-              httpbis-messaging-19, 12 September 2021,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
-              messaging-19>.
+   [HTTP11]   Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
+              Ed., "HTTP/1.1", RFC 9112, DOI 10.17487/RFC9112, 1 January
+              1970, <https://www.rfc-editor.org/rfc/rfc9112>.
 
-   [HTTP2]    Belshe, M., Peon, R., and M. Thomson, Ed., "Hypertext
-              Transfer Protocol Version 2 (HTTP/2)", RFC 7540,
-              DOI 10.17487/RFC7540, May 2015,
-              <https://www.rfc-editor.org/rfc/rfc7540>.
+   [HTTP2]    Thomson, M., Ed. and C. Benfield, Ed., "HTTP/2", RFC 9113,
+              DOI 10.17487/RFC9113, 1 January 1970,
+              <https://www.rfc-editor.org/rfc/rfc9113>.
 
    [RFC6585]  Nottingham, M. and R. Fielding, "Additional HTTP Status
               Codes", RFC 6585, DOI 10.17487/RFC6585, April 2012,
@@ -2988,54 +2980,30 @@ Acknowledgments
    from many people.  Among others, the following people provided
    substantial contributions to this document:
 
-   *  Bence Beky
-
+   *  Bence Béky
    *  Daan De Meyer
-
    *  Martin Duke
-
    *  Roy Fielding
-
    *  Alan Frindell
-
    *  Alessandro Ghedini
-
    *  Nick Harper
-
    *  Ryan Hamilton
-
    *  Christian Huitema
-
    *  Subodh Iyengar
-
    *  Robin Marx
-
    *  Patrick McManus
-
    *  Luca Niccolini
-
    *  奥 一穂 (Kazuho Oku)
-
    *  Lucas Pardue
-
    *  Roberto Peon
-
    *  Julian Reschke
-
    *  Eric Rescorla
-
    *  Martin Seemann
-
    *  Ben Schwartz
-
    *  Ian Swett
-
    *  Willy Taureau
-
    *  Martin Thomson
-
    *  Dmitri Tikhonov
-
    *  Tatsuhiro Tsujikawa
 
    A portion of Mike Bishop's contribution was supported by Microsoft
