@@ -2060,11 +2060,9 @@ Authors' Addresses
 
    Jana Iyengar (editor)
    Fastly
-
    Email: jri.ietf@gmail.com
 
 
    Ian Swett (editor)
    Google
-
    Email: ianswett@google.com

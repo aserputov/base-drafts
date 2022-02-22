@@ -8473,11 +8473,9 @@ Authors' Addresses
 
    Jana Iyengar (editor)
    Fastly
-
    Email: jri.ietf@gmail.com
 
 
    Martin Thomson (editor)
    Mozilla
-
    Email: mt@lowentropy.net
