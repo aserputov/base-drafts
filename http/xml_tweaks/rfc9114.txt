@@ -4,7 +4,7 @@
 
 Internet Engineering Task Force (IETF)                    M. Bishop, Ed.
 Request for Comments: 9114                                        Akamai
-Category: Standards Track                               17 February 2022
+Category: Standards Track                               22 February 2022
 ISSN: 2070-1721
 
 
@@ -2557,14 +2557,14 @@ Table of Contents
 
    [QPACK]    Krasic, C., Bishop, M., and A. Frindell, Ed., "QPACK:
               Header Compression for HTTP over QUIC", Work in Progress,
-              Internet-Draft, draft-ietf-quic-qpack, 17 February 2022,
+              Internet-Draft, draft-ietf-quic-qpack, 22 February 2022,
               <https://datatracker.ietf.org/doc/html/draft-ietf-quic-
               qpack>.
 
    [QUIC-TRANSPORT]
               Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", RFC 9000,
-              DOI 10.17487/RFC9000, 17 February 2022,
+              DOI 10.17487/RFC9000, 22 February 2022,
               <https://www.rfc-editor.org/rfc/rfc9000>.
 
    [RFC0793]  Postel, J., "Transmission Control Protocol", STD 7,

@@ -1037,7 +1037,7 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 <dd class="category">Standards Track</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2022-02-17" class="published">17 February 2022</time>
+<time datetime="2022-02-22" class="published">22 February 2022</time>
     </dd>
 <dt class="label-issn">ISSN:</dt>
 <dd class="issn">2070-1721</dd>
@@ -2756,13 +2756,13 @@ H3_ID_ERROR; see <a href="#errors" class="xref">Section 8</a>.<a href="#section-
 <a href="#section-6.2.3" class="section-number selfRef">6.2.3. </a><a href="#name-reserved-stream-types" class="section-name selfRef">Reserved Stream Types</a>
           </h4>
 <p id="section-6.2.3-1">Stream types of the format <code>0x1f * N + 0x21</code> for non-negative integer values of
-N are reserved to exercise the requirement that unknown types be ignored. These
-streams have no semantics, and they can be sent when application-layer padding
-is desired. They            <span class="bcp14">MAY</span>
- also be sent on connections where no data is currently
-being transferred. Endpoints            <span class="bcp14">MUST NOT</span>
- consider these streams to have any meaning
-upon receipt.<a href="#section-6.2.3-1" class="pilcrow">¶</a></p>
+<code>N</code> are reserved to exercise the requirement that unknown types be ignored.
+These streams have no semantics, and they can be sent when application-layer
+padding is desired. They            <span class="bcp14">MAY</span>
+ also be sent on connections where no data is
+currently being transferred. Endpoints            <span class="bcp14">MUST NOT</span>
+ consider these streams to have
+any meaning upon receipt.<a href="#section-6.2.3-1" class="pilcrow">¶</a></p>
 <p id="section-6.2.3-2">The payload and length of the stream are selected in any manner the sending
 implementation chooses.  When sending a reserved stream type, the implementation            <span class="bcp14">MAY</span>
  either terminate the stream cleanly or reset it.  When resetting the stream,
@@ -3131,8 +3131,8 @@ not understand.<a href="#section-7.2.4-9" class="pilcrow">¶</a></p>
             <dd class="break"></dd>
 </dl>
 <p id="section-7.2.4.1-3">Setting identifiers of the format <code>0x1f * N + 0x21</code> for non-negative integer
-values of N are reserved to exercise the requirement that unknown identifiers be
-ignored.  Such settings have no defined meaning. Endpoints              <span class="bcp14">SHOULD</span>
+values of <code>N</code> are reserved to exercise the requirement that unknown identifiers
+be ignored.  Such settings have no defined meaning. Endpoints              <span class="bcp14">SHOULD</span>
  include at
 least one such setting in their SETTINGS frame. Endpoints              <span class="bcp14">MUST NOT</span>
  consider such
@@ -3378,8 +3378,8 @@ a connection error of type H3_ID_ERROR.<a href="#section-7.2.7-6" class="pilcrow
           <h4 id="name-reserved-frame-types">
 <a href="#section-7.2.8" class="section-number selfRef">7.2.8. </a><a href="#name-reserved-frame-types" class="section-name selfRef">Reserved Frame Types</a>
           </h4>
-<p id="section-7.2.8-1">Frame types of the format <code>0x1f * N + 0x21</code> for non-negative integer values of N
-are reserved to exercise the requirement that unknown types be ignored
+<p id="section-7.2.8-1">Frame types of the format <code>0x1f * N + 0x21</code> for non-negative integer values of
+<code>N</code> are reserved to exercise the requirement that unknown types be ignored
 (<a href="#extensions" class="xref">Section 9</a>).  These frames have no semantics, and they            <span class="bcp14">MAY</span>
  be sent on any
 stream where frames are allowed to be sent. This enables their use for
@@ -3535,9 +3535,9 @@ retry over HTTP/1.1.<a href="#section-8.1-2.34.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
-<p id="section-8.1-3">Error codes of the format <code>0x1f * N + 0x21</code> for non-negative integer values of N
-are reserved to exercise the requirement that unknown error codes be treated as
-equivalent to H3_NO_ERROR (<a href="#extensions" class="xref">Section 9</a>). Implementations          <span class="bcp14">SHOULD</span>
+<p id="section-8.1-3">Error codes of the format <code>0x1f * N + 0x21</code> for non-negative integer values of
+<code>N</code> are reserved to exercise the requirement that unknown error codes be treated
+as equivalent to H3_NO_ERROR (<a href="#extensions" class="xref">Section 9</a>). Implementations          <span class="bcp14">SHOULD</span>
  select an
 error code from this space with some probability when they would have sent
 H3_NO_ERROR.<a href="#section-8.1-3" class="pilcrow">¶</a></p>
@@ -4027,7 +4027,7 @@ its semantics, including any parts of the frame that are conditionally present.<
             </tbody>
           </table>
 </div>
-<p id="section-11.2.1-8">Each code of the format <code>0x1f * N + 0x21</code> for non-negative integer values of N
+<p id="section-11.2.1-8">Each code of the format <code>0x1f * N + 0x21</code> for non-negative integer values of <code>N</code>
 (that is, 0x21, 0x40, ..., through 0x3ffffffffffffffe)            <span class="bcp14">MUST NOT</span>
  be assigned by
 IANA and            <span class="bcp14">MUST NOT</span>
@@ -4129,7 +4129,7 @@ most restrictive possible value.<a href="#section-11.2.2-4.4.1" class="pilcrow">
 </div>
 <p id="section-11.2.2-7">For fomatting reasons, setting names can be abbreviated by removing the
 'SETTING_' prefix.<a href="#section-11.2.2-7" class="pilcrow">¶</a></p>
-<p id="section-11.2.2-8">Each code of the format <code>0x1f * N + 0x21</code> for non-negative integer values of N
+<p id="section-11.2.2-8">Each code of the format <code>0x1f * N + 0x21</code> for non-negative integer values of <code>N</code>
 (that is, 0x21, 0x40, ..., through 0x3ffffffffffffffe)            <span class="bcp14">MUST NOT</span>
  be assigned by
 IANA and            <span class="bcp14">MUST NOT</span>
@@ -4328,7 +4328,7 @@ Required policy to avoid collisions with HTTP/2 error codes.<a href="#section-11
             </tbody>
           </table>
 </div>
-<p id="section-11.2.3-7">Each code of the format <code>0x1f * N + 0x21</code> for non-negative integer values of N
+<p id="section-11.2.3-7">Each code of the format <code>0x1f * N + 0x21</code> for non-negative integer values of <code>N</code>
 (that is, 0x21, 0x40, ..., through 0x3ffffffffffffffe)            <span class="bcp14">MUST NOT</span>
  be assigned by
 IANA and            <span class="bcp14">MUST NOT</span>
@@ -4400,7 +4400,7 @@ stream type, including the layout and semantics of the stream contents.<a href="
             </tbody>
           </table>
 </div>
-<p id="section-11.2.4-7">Each code of the format <code>0x1f * N + 0x21</code> for non-negative integer values of N
+<p id="section-11.2.4-7">Each code of the format <code>0x1f * N + 0x21</code> for non-negative integer values of <code>N</code>
 (that is, 0x21, 0x40, ..., through 0x3ffffffffffffffe)            <span class="bcp14">MUST NOT</span>
  be assigned by
 IANA and            <span class="bcp14">MUST NOT</span>
@@ -4438,11 +4438,11 @@ IANA and            <span class="bcp14">MUST NOT</span>
 <dd class="break"></dd>
 <dt id="QPACK">[QPACK]</dt>
         <dd>
-<span class="refAuthor">Krasic, C.</span>, <span class="refAuthor">Bishop, M.</span>, and <span class="refAuthor">A. Frindell, Ed.</span>, <span class="refTitle">"QPACK: Header Compression for HTTP over QUIC"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-qpack</span>, <time datetime="2022-02-17" class="refDate">17 February 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qpack">https://datatracker.ietf.org/doc/html/draft-ietf-quic-qpack</a>&gt;</span>. </dd>
+<span class="refAuthor">Krasic, C.</span>, <span class="refAuthor">Bishop, M.</span>, and <span class="refAuthor">A. Frindell, Ed.</span>, <span class="refTitle">"QPACK: Header Compression for HTTP over QUIC"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-qpack</span>, <time datetime="2022-02-22" class="refDate">22 February 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qpack">https://datatracker.ietf.org/doc/html/draft-ietf-quic-qpack</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="QUIC-TRANSPORT">[QUIC-TRANSPORT]</dt>
         <dd>
-<span class="refAuthor">Iyengar, J., Ed.</span> and <span class="refAuthor">M. Thomson, Ed.</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="seriesInfo">RFC 9000</span>, <span class="seriesInfo">DOI 10.17487/RFC9000</span>, <time datetime="2022-02-17" class="refDate">17 February 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9000">https://www.rfc-editor.org/rfc/rfc9000</a>&gt;</span>. </dd>
+<span class="refAuthor">Iyengar, J., Ed.</span> and <span class="refAuthor">M. Thomson, Ed.</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="seriesInfo">RFC 9000</span>, <span class="seriesInfo">DOI 10.17487/RFC9000</span>, <time datetime="2022-02-22" class="refDate">22 February 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9000">https://www.rfc-editor.org/rfc/rfc9000</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC0793">[RFC0793]</dt>
         <dd>
