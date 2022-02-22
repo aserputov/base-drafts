@@ -1171,6 +1171,9 @@ subsumed by QUIC and describes how HTTP/2 extensions can be ported to HTTP/3.<a 
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.1">
                     <p id="section-toc.1-1.4.2.2.2.1.1"><a href="#section-4.2.1" class="xref">4.2.1</a>.  <a href="#name-field-compression" class="xref">Field Compression</a></p>
 </li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.2">
+                    <p id="section-toc.1-1.4.2.2.2.2.1"><a href="#section-4.2.2" class="xref">4.2.2</a>.  <a href="#name-header-size-constraints" class="xref">Header Size Constraints</a></p>
+</li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
@@ -2066,30 +2069,30 @@ field lines, these            <span class="bcp14">MUST</span>
 two-byte delimiter of 0x3b, 0x20 (the ASCII string "; ") before being passed
 into a context other than HTTP/2 or HTTP/3, such as an HTTP/1.1 connection, or a
 generic HTTP server application.<a href="#section-4.2.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
 <div id="header-size-constraints">
-<section id="section-4.2.1.1">
-            <h5 id="name-header-size-constraints">
-<a href="#section-4.2.1.1" class="section-number selfRef">4.2.1.1. </a><a href="#name-header-size-constraints" class="section-name selfRef">Header Size Constraints</a>
-            </h5>
-<p id="section-4.2.1.1-1">An HTTP/3 implementation              <span class="bcp14">MAY</span>
+<section id="section-4.2.2">
+          <h4 id="name-header-size-constraints">
+<a href="#section-4.2.2" class="section-number selfRef">4.2.2. </a><a href="#name-header-size-constraints" class="section-name selfRef">Header Size Constraints</a>
+          </h4>
+<p id="section-4.2.2-1">An HTTP/3 implementation            <span class="bcp14">MAY</span>
  impose a limit on the maximum size of the message
 header it will accept on an individual HTTP message.  A server that receives a
 larger header section than it is willing to handle can send an HTTP 431 (Request
 Header Fields Too Large) status code (<span>[<a href="#RFC6585" class="xref">RFC6585</a>]</span>).  A client can discard
 responses that it cannot process.  The size of a field list is calculated based
 on the uncompressed size of fields, including the length of the name and value
-in bytes plus an overhead of 32 bytes for each field.<a href="#section-4.2.1.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.2.1.1-2">If an implementation wishes to advise its peer of this limit, it can be conveyed
+in bytes plus an overhead of 32 bytes for each field.<a href="#section-4.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2.2-2">If an implementation wishes to advise its peer of this limit, it can be conveyed
 as a number of bytes in the SETTINGS_MAX_FIELD_SECTION_SIZE parameter. An
-implementation that has received this parameter              <span class="bcp14">SHOULD NOT</span>
+implementation that has received this parameter            <span class="bcp14">SHOULD NOT</span>
  send an HTTP message
 header that exceeds the indicated size, as the peer will likely refuse to
 process it.  However, an HTTP message can traverse one or more intermediaries
 before reaching the origin server; see <span><a href="https://rfc-editor.org/rfc/rfc9110#section-3.7" class="relref">Section 3.7</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>.  Because
 this limit is applied separately by each implementation that processes the
-message, messages below this limit are not guaranteed to be accepted.<a href="#section-4.2.1.1-2" class="pilcrow">¶</a></p>
-</section>
-</div>
+message, messages below this limit are not guaranteed to be accepted.<a href="#section-4.2.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -3157,7 +3160,7 @@ not understand.<a href="#section-7.2.4-9" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-7.2.4.1-2">
               <dt id="section-7.2.4.1-2.1">SETTINGS_MAX_FIELD_SECTION_SIZE (0x06):</dt>
               <dd style="margin-left: 1.5em" id="section-7.2.4.1-2.2">
-                <p id="section-7.2.4.1-2.2.1">The default value is unlimited.  See <a href="#header-size-constraints" class="xref">Section 4.2.1.1</a> for usage.<a href="#section-7.2.4.1-2.2.1" class="pilcrow">¶</a></p>
+                <p id="section-7.2.4.1-2.2.1">The default value is unlimited.  See <a href="#header-size-constraints" class="xref">Section 4.2.2</a> for usage.<a href="#section-7.2.4.1-2.2.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 </dl>
@@ -3739,7 +3742,7 @@ the entire header section.  Since there is no hard limit to the size of a field
 section, some endpoints could be forced to commit a large amount of available
 memory for header fields.<a href="#section-10.5.1-1" class="pilcrow">¶</a></p>
 <p id="section-10.5.1-2">An endpoint can use the SETTINGS_MAX_FIELD_SECTION_SIZE
-(<a href="#header-size-constraints" class="xref">Section 4.2.1.1</a>) setting to advise peers of limits that might apply
+(<a href="#header-size-constraints" class="xref">Section 4.2.2</a>) setting to advise peers of limits that might apply
 on the size of field sections. This setting is only advisory, so endpoints            <span class="bcp14">MAY</span>
 
 choose to send field sections that exceed this limit and risk having the request
