@@ -2181,9 +2181,7 @@ Host field if one is not present in a request by copying the value of the
             <dd style="margin-left: 1.5em" id="section-4.3.1-2.14">
               <p id="section-4.3.1-2.14.1">Contains the path and query parts of the target URI (the "path-absolute"
 production and optionally a <code>?</code> character (ASCII 0x3f) followed by the
-"query" production; see Sections <a href="https://rfc-editor.org/rfc/rfc3986#section-3.3" class="relref">3.3</a> and <a href="https://rfc-editor.org/rfc/rfc3986#section-3.4" class="relref">3.4</a> of <span>[<a href="#URI" class="xref">URI</a>]</span>.  A request in
-asterisk form includes the value <code>*</code> (ASCII 0x2a) for the ":path"
-pseudo-header field.<a href="#section-4.3.1-2.14.1" class="pilcrow">¶</a></p>
+"query" production; see Sections <a href="https://rfc-editor.org/rfc/rfc3986#section-3.3" class="relref">3.3</a> and <a href="https://rfc-editor.org/rfc/rfc3986#section-3.4" class="relref">3.4</a> of <span>[<a href="#URI" class="xref">URI</a>]</span>.<a href="#section-4.3.1-2.14.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-4.3.1-2.15"></dt>
@@ -2192,10 +2190,8 @@ pseudo-header field.<a href="#section-4.3.1-2.14.1" class="pilcrow">¶</a></p>
  be empty for "http" or "https" URIs;
 "http" or "https" URIs that do not contain a path component                <span class="bcp14">MUST</span>
  include a
-value of '/'.  The exception to this rule is an OPTIONS request for an
-"http" or "https" URI that does not include a path component; these                <span class="bcp14">MUST</span>
-
-include a ":path" pseudo-header field with a value of '*'; see
+value of '/'.  An OPTIONS request that does not include a path component
+includes the value <code>*</code> (ASCII 0x2a) for the ":path" pseudo-header field; see
 <span><a href="https://rfc-editor.org/rfc/rfc9110#section-7.1" class="relref">Section 7.1</a> of [<a href="#HTTP" class="xref">HTTP</a>]</span>.<a href="#section-4.3.1-2.16.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
