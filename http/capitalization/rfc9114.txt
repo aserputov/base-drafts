@@ -4,7 +4,7 @@
 
 Internet Engineering Task Force (IETF)                    M. Bishop, Ed.
 Request for Comments: 9114                                        Akamai
-Category: Standards Track                               24 February 2022
+Category: Standards Track                               25 February 2022
 ISSN: 2070-1721
 
 
@@ -1099,7 +1099,7 @@ Table of Contents
       indicated ID if these requests were not processed.
 
    *  If a server receives a GOAWAY frame after having promised pushes
-      with a Push ID greater than or equal to the identifier contained
+      with a push ID greater than or equal to the identifier contained
       in the GOAWAY frame, those pushes will not be accepted.
 
    Servers SHOULD send a GOAWAY frame when the closing of a connection
@@ -1547,9 +1547,9 @@ Table of Contents
 
    If the client receives a CANCEL_PUSH frame, that frame might identify
    a push ID that has not yet been mentioned by a PUSH_PROMISE frame due
-   to reordering.  If a server receives a CANCEL_PUSH frame whose Push
-   ID has not yet been mentioned by a PUSH_PROMISE frame, this MUST be
-   treated as a connection error of type H3_ID_ERROR.
+   to reordering.  If a server receives a CANCEL_PUSH frame for a push
+   ID that has not yet been mentioned by a PUSH_PROMISE frame, this MUST
+   be treated as a connection error of type H3_ID_ERROR.
 
 7.2.4.  SETTINGS
 
@@ -1718,17 +1718,17 @@ Table of Contents
    Encoded Field Section:  QPACK-encoded request header fields for the
       promised response.  See [QPACK] for more details.
 
-   A server MUST NOT use a Push ID that is larger than the client has
+   A server MUST NOT use a push ID that is larger than the client has
    provided in a MAX_PUSH_ID frame (Section 7.2.7).  A client MUST treat
-   receipt of a PUSH_PROMISE frame that contains a larger Push ID than
+   receipt of a PUSH_PROMISE frame that contains a larger push ID than
    the client has advertised as a connection error of H3_ID_ERROR.
 
-   A server MAY use the same Push ID in multiple PUSH_PROMISE frames.
+   A server MAY use the same push ID in multiple PUSH_PROMISE frames.
    If so, the decompressed request header sets MUST contain the same
    fields in the same order, and both the name and the value in each
    field MUST be exact matches.  Clients SHOULD compare the request
    header sections for resources promised multiple times.  If a client
-   receives a Push ID that has already been promised and detects a
+   receives a push ID that has already been promised and detects a
    mismatch, it MUST respond with a connection error of type
    H3_GENERAL_PROTOCOL_ERROR.  If the decompressed field sections match
    exactly, the client SHOULD associate the pushed content with each
@@ -1736,9 +1736,9 @@ Table of Contents
 
    Allowing duplicate references to the same push ID is primarily to
    reduce duplication caused by concurrent requests.  A server SHOULD
-   avoid reusing a Push ID over a long period.  Clients are likely to
+   avoid reusing a push ID over a long period.  Clients are likely to
    consume server push responses and not retain them for reuse over
-   time.  Clients that see a PUSH_PROMISE frame that uses a Push ID that
+   time.  Clients that see a PUSH_PROMISE frame that uses a push ID that
    they have already consumed and discarded are forced to ignore the
    promise.
 
@@ -2769,7 +2769,7 @@ A.2.4.  Guidance for New Frame Type Definitions
    integer encoding.  In particular, stream IDs use this encoding, which
    allows for a larger range of possible values than the encoding used
    in HTTP/2.  Some frames in HTTP/3 use an identifier other than a
-   stream ID (e.g., Push IDs).  Redefinition of the encoding of
+   stream ID (e.g., push IDs).  Redefinition of the encoding of
    extension frame types might be necessary if the encoding includes a
    stream ID.
 
